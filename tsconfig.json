@@ -4,6 +4,7 @@
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
+		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
@@ -12,6 +13,12 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
+		"verbatimModuleSyntax": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noFallthroughCasesInSwitch": true,
+		"sourceMap": false,
+		"declaration": false,
 		"plugins": [
 			{
 				"name": "next"
