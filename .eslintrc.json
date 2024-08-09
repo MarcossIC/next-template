@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "next",
+    "plugin:@next/next/recommended",
+    "prettier"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "local",
+        "varsIgnorePattern": "^_",
+        "args": "none",
+        "argsIgnorePattern": "[iI]gnored",
+        "caughtErrors": "all",
+        "destructuredArrayIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": false }],
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "no-undef": ["warn", { "typeof": false }]
+  }
+}
