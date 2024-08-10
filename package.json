@@ -7,49 +7,43 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"format": "prettier \"src/app/**/*.{js,jsx,ts,tsx,json}\" \"./*.{js,cjs,ts,json}\" --check --ignore-path .gitignore .",
-		"format:fix": "prettier \"src/app/**/*.{js,jsx,ts,tsx,json}\" \"./*.{js,cjs,ts,json}\" --write --ignore-path .gitignore .",
-		"prepare": "husky"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
+		"format": "prettier \"app/**/*.{js,jsx,ts,tsx,json}\" \"./*.{js,cjs,ts,json}\" --check --ignore-path .gitignore .",
+		"format:fix": "prettier \"app/**/*.{js,jsx,ts,tsx,json}\" \"./*.{js,cjs,ts,json}\" --write --ignore-path .gitignore .",
+		"prepare": "node setup-husky.js"
 	},
 	"lint-staged": {
-		"src/app/**/*.{js,jsx,ts,tsx,json}": [
-			"prettier --write",
-			"next lint"
+		"app/**/*.{js,jsx,ts,tsx,json}": [
+			"prettier --write --ignore-path .gitignore .",
+			"next lint --ignore-pattern '.eslintignore'"
 		],
 		"./*.{js,ts,json}": [
-			"prettier --write",
-			"next lint"
+			"prettier --write --ignore-path .gitignore .",
+			"next lint --ignore-pattern '.eslintignore'"
 		]
 	},
 	"dependencies": {
+		"formik": "2.4.5",
+		"next": "14.2.5",
 		"react": "^18",
 		"react-dom": "^18",
-		"next": "14.2.5",
 		"sharp": "^0.33.4",
 		"zod": "3.23.8",
-		"formik": "2.4.5",
 		"zustand": "4.5.4"
 	},
 	"devDependencies": {
-		"typescript": "^5",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
-		"tailwindcss": "^3.4.1",
-		"postcss": "^8",
-		"husky": "9.0.11",
-		"lint-staged": "15.2.7",
-		"prettier": "3.3.3",
-		"eslint": "^8",
-		"@next/eslint-plugin-next": "14.2.5",
 		"@typescript-eslint/eslint-plugin": "7.16.1",
+		"eslint": "^8",
 		"eslint-config-next": "14.2.5",
 		"eslint-config-prettier": "9.1.0",
-		"eslint-plugin-prettier": "5.2.1"
+		"eslint-plugin-prettier": "5.2.1",
+		"husky": "9.0.11",
+		"lint-staged": "15.2.7",
+		"postcss": "^8",
+		"prettier": "3.3.3",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
 	}
 }
