@@ -40,3 +40,4 @@ pnpm-lock.yaml
 package-lock.json
 .env
 .husky/pre-commit
+.husky/pre-push

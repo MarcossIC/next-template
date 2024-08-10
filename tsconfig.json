@@ -1,33 +1,38 @@
 {
 	"compilerOptions": {
 		"lib": ["dom", "dom.iterable", "esnext"],
+		"module": "esnext",
+		"target": "es5",
+		"moduleResolution": "bundler",
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
+		"verbatimModuleSyntax": true,
+		"allowSyntheticDefaultImports": true,
 		"noEmit": true,
 		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"verbatimModuleSyntax": true,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"noFallthroughCasesInSwitch": true,
 		"sourceMap": false,
 		"declaration": false,
+		"baseUrl": ".",
+		"types": ["@testing-library/jest-dom"],
 		"plugins": [
 			{
 				"name": "next"
 			}
 		],
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./src/*"],
+      "test-utils": ["./__test__/test-utils.jsx"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.js"],
+	"include": ["next-env.d.ts", "types.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
 	"exclude": ["node_modules"]
 }
