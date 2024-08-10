@@ -12,6 +12,15 @@ try {
      fs.mkdirSync(huskyDir);
    }
 
+  // Create commit-msg hook for Commitlint
+  const commitMsgPath = path.join(huskyDir, 'commit-msg');
+  const commitMsgHook = `#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx commitlint --edit || { echo 'The commit message does not meet the requirements. Look at "commitlint.config.js" file.'; exit 1; }
+`;
+  fs.writeFileSync(commitMsgPath, commitMsgHook);
+
   // Create pre-commit hook
   const preCommitPath = path.join(huskyDir, 'pre-commit');
   const preCommitHook = `#!/bin/sh
@@ -24,14 +33,17 @@ npx lint-staged
   // Create pre-push hook
   const prePushPath = path.join(huskyDir, 'pre-push');
   const prePushHook = `#!/bin/sh
-  . "$(dirname -- "$0")/_/husky.sh"
+. "$(dirname -- "$0")/_/husky.sh"
 
-  jest || exit 1
+npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
+npx prettier --check --ignore-path .gitignore . || { echo 'Prettier formatting failed. Push aborted.'; exit 1; }
+npx jest || { echo 'Tests failed. Push aborted.'; exit 1; }
   `;
     fs.writeFileSync(prePushPath, prePushHook);
 
   // Make hooks executable
   if (process.platform !== 'win32') {
+    execSync(`chmod +x ${commitMsgPath}`, { stdio: 'inherit' });
     execSync(`chmod +x ${preCommitPath}`, { stdio: 'inherit' });
     execSync(`chmod +x ${prePushPath}`, { stdio: 'inherit' });
   }

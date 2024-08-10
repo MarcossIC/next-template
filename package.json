@@ -7,13 +7,14 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"format": "prettier \"src/app/**/*.{js,jsx,ts,tsx,json}\" \"./*.{js,cjs,ts,json}\" --check --ignore-path .gitignore .",
-		"format:fix": "prettier \"src/app/**/*.{js,jsx,ts,tsx,json}\" \"./*.{js,cjs,ts,json}\" --write --ignore-path .gitignore .",
+		"format": "prettier --check --ignore-path .gitignore .",
+		"format:fix": "prettier --write --ignore-path .gitignore .",
+		"postinstall": "node setup-husky.js",
 		"prepare": "node setup-husky.js",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci"
+		"test": "jest",
+		"test:watch": "jest --watchAll",
+		"test:coverage": "jest --coverage",
+		"test:ci": "jest --ci"
 	},
 	"lint-staged": {
 		"src/app/**/*.{js,jsx,ts,tsx,json}": [
@@ -35,6 +36,8 @@
 		"zustand": "4.5.4"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^19.4.0",
+		"@commitlint/config-conventional": "^19.2.2",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.4.8",
 		"@testing-library/react": "^16.0.0",
