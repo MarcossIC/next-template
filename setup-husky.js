@@ -36,7 +36,6 @@ npx lint-staged
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
-npx prettier --check --ignore-path .gitignore . || { echo 'Prettier formatting failed. Push aborted.'; exit 1; }
 npx jest || { echo 'Tests failed. Push aborted.'; exit 1; }
   `;
     fs.writeFileSync(prePushPath, prePushHook);

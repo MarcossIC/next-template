@@ -1,5 +1,5 @@
 {
-	"extends": ["eslint:recommended", "next", "prettier", "plugin:jest-dom/recommended", "plugin:testing-library/react"],
+	"extends": ["eslint:recommended", "next", "prettier", "plugin:jest-dom/recommended", "plugin:testing-library/react", "plugin:jest/recommended"],
 	"rules": {
 		"no-unused-vars": [
 			"error",
