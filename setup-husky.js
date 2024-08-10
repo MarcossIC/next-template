@@ -36,7 +36,7 @@ npx lint-staged
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
-npx jest || { echo 'Tests failed. Push aborted.'; exit 1; }
+npx jest --detectOpenHandles || { echo 'Tests failed. Push aborted.'; exit 1; }
   `;
     fs.writeFileSync(prePushPath, prePushHook);
 
@@ -47,7 +47,7 @@ npx jest || { echo 'Tests failed. Push aborted.'; exit 1; }
     execSync(`chmod +x ${prePushPath}`, { stdio: 'inherit' });
   }
 
-  console.log("Husky has been set up with a pre-commit hook that runs 'npm run lint'");
+  console.log("Husky has been set up with a commit-msg, pre-commit and pre-push hook");
 } catch (error) {
   console.error("Error setting up Husky:", error);
   process.exit(1);

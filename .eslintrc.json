@@ -1,5 +1,10 @@
 {
-	"extends": ["eslint:recommended", "next", "prettier", "plugin:jest-dom/recommended", "plugin:testing-library/react", "plugin:jest/recommended"],
+	"extends": ["eslint:recommended", "next", "prettier", "plugin:jest/recommended"],
+	"plugins": ["prettier"],
+	"env": {
+		"jest": true,
+		"browser": true
+	},
 	"rules": {
 		"no-unused-vars": [
 			"error",
@@ -17,5 +22,14 @@
 		"react-hooks/rules-of-hooks": "off",
 		"react-hooks/exhaustive-deps": "off",
 		"no-undef": ["warn", { "typeof": false }]
-	}
+	},
+	"overrides": [
+		{
+			"files": ["__test__/**/*.*"],
+			"plugins": ["jest", "testing-library"],
+			"env": {
+				"jest/globals": true
+			}
+		}
+	]
 }

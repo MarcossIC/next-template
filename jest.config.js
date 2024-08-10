@@ -4,9 +4,7 @@ const nextJest = require('next/jest')
 const createJestConfig = nextJest({ dir: './' })
 
 const config = {
-	collectCoverage: true,
 	coverageDirectory: 'coverage',
-
 	coverageProvider: 'v8',
 	testEnvironment: 'jsdom',
 
@@ -26,12 +24,14 @@ const config = {
   preset: "ts-jest",
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    'test-utils': '<rootDir>/__test__/test-utils.jsx'
   },
   // The glob patterns Jest uses to detect test files
 	testMatch: [
     "**/__tests__/**/*.[jt]s?(x)",
-    "**/?(*.)+(spec|test).[tj]s?(x)"
+    "**/?(*.)+(spec|test).[jt]s?(x)"
   ],
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
 };
 
 module.exports = createJestConfig(config)
