@@ -42,3 +42,5 @@ package-lock.json
 .husky/pre-commit
 .husky/pre-push
 .husky/commit-msg
+
+*storybook.log
