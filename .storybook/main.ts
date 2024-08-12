@@ -10,6 +10,7 @@ const config: StorybookConfig = {
 		'@chromatic-com/storybook',
 		'@storybook/addon-interactions',
     '@storybook/addon-a11y',
+    '@storybook/addon-jest'
 	],
 	framework: {
 		name: '@storybook/nextjs',
@@ -17,7 +18,7 @@ const config: StorybookConfig = {
 	},
 	staticDirs: ['..\\public'],
   features: {
-    experimentalRSC: true,
+    experimentalRSC: true
   },
 };
 export default config;

@@ -44,3 +44,4 @@ package-lock.json
 .husky/commit-msg
 
 *storybook.log
+.jest-test-results.json

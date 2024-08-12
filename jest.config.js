@@ -32,6 +32,7 @@ const config = {
     "**/?(*.)+(spec|test).[jt]s?(x)"
   ],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
+  modulePathIgnorePatterns: ['node_modules', 'jest-test-results.json']
 };
 
 module.exports = createJestConfig(config)
