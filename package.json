@@ -7,6 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"commitlint:last": "npx commitlint --from HEAD~1 --to HEAD --verbose || $1",
 		"format": "prettier --check --ignore-path .gitignore .",
 		"format:fix": "prettier --write --ignore-path .gitignore .",
 		"postinstall": "node setup-husky.js",
@@ -19,11 +20,11 @@
 	"lint-staged": {
 		"src/app/**/*.{js,jsx,ts,tsx,json}": [
 			"prettier --write --ignore-path .gitignore .",
-			"next lint --ignore-pattern '.eslintignore'"
+			"next lint"
 		],
 		"./*.{js,ts,json}": [
 			"prettier --write --ignore-path .gitignore .",
-			"next lint --ignore-pattern '.eslintignore'"
+			"next lint"
 		]
 	},
 	"dependencies": {

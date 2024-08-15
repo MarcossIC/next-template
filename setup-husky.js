@@ -4,7 +4,7 @@ const path = require('path');
 
 try {
   // Initialize Husky
-  execSync('pnpm husky', { stdio: 'inherit' });
+  execSync('npx husky', { stdio: 'inherit' });
 
    // Create .husky directory if it doesn't exist
    const huskyDir = path.join(__dirname, '.husky');
