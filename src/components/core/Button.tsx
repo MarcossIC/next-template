@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, forwardRef } from 'react';
+import { forwardRef, type ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	'data-testid'?: string;
