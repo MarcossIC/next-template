@@ -1,6 +1,5 @@
 {
-	"extends": ["eslint:recommended", "next", "prettier", "plugin:jest/recommended"],
-	"plugins": ["prettier"],
+	"extends": ["next", "prettier", "react-app", "react-app/jest", "plugin:tailwindcss/recommended"],
 	"env": {
 		"jest": true,
 		"browser": true
@@ -18,10 +17,21 @@
 				"ignoreRestSiblings": true
 			}
 		],
+		"sort-imports": [
+			"error",
+			{
+				"ignoreCase": true,
+				"ignoreDeclarationSort": true
+			}
+		],
 		"no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": false }],
+		"no-undef": ["warn", { "typeof": false }],
 		"react-hooks/rules-of-hooks": "off",
-		"react-hooks/exhaustive-deps": "off",
-		"no-undef": ["warn", { "typeof": false }]
+		"tailwindcss/no-custom-classname": "off",
+		"tailwindcss/classnames-order": "off",
+		"testing-library/prefer-screen-queries": "off",
+		"@next/next/no-html-link-for-pages": "off",
+		"react-hooks/exhaustive-deps": "off"
 	},
 	"overrides": [
 		{
