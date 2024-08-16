@@ -1,6 +1,16 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-};
+import withBundleAnalyzer from "@next/bundle-analyzer"
+import withPlugins from "next-compose-plugins"
+import { env } from "./env.mjs"
 
-module.exports = nextConfig;
+/** @type {import('next').NextConfig} */
+const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
+  reactStrictMode: true,
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+  experimental: { instrumentationHook: true },
+})
+
+export default config;

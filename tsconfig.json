@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
@@ -22,7 +23,7 @@
     "sourceMap": false,
     "declaration": false,
     "baseUrl": ".",
-    "types": ["@testing-library/jest-dom"],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
       {
         "name": "next"
@@ -38,8 +39,9 @@
     "types.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "tailwind.config.js"
+    "**/*.cjs",
+    "**/*.mjs",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
