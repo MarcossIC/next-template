@@ -7,52 +7,52 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 try {
-	// Initialize Husky
-	execSync('npx husky', { stdio: 'inherit' });
+  // Initialize Husky
+  execSync('npx husky', { stdio: 'inherit' });
 
-	// Create .husky directory if it doesn't exist
-	const huskyDir = path.join(__dirname, '.husky');
-	if (!fs.existsSync(huskyDir)) {
-		fs.mkdirSync(huskyDir);
-	}
+   // Create .husky directory if it doesn't exist
+   const huskyDir = path.join(__dirname, '.husky');
+   if (!fs.existsSync(huskyDir)) {
+     fs.mkdirSync(huskyDir);
+   }
 
-	// Create commit-msg hook for Commitlint
-	const commitMsgPath = path.join(huskyDir, 'commit-msg');
-	const commitMsgHook = `#!/bin/sh
+  // Create commit-msg hook for Commitlint
+  const commitMsgPath = path.join(huskyDir, 'commit-msg');
+  const commitMsgHook = `#!/bin/sh
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx commitlint --edit || { echo 'The commit message does not meet the requirements. Look at "commitlint.config.js" file.'; exit 1; }
 `;
-	fs.writeFileSync(commitMsgPath, commitMsgHook);
+  fs.writeFileSync(commitMsgPath, commitMsgHook);
 
-	// Create pre-commit hook
-	const preCommitPath = path.join(huskyDir, 'pre-commit');
-	const preCommitHook = `#!/bin/sh
+  // Create pre-commit hook
+  const preCommitPath = path.join(huskyDir, 'pre-commit');
+  const preCommitHook = `#!/bin/sh
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx lint-staged
 `;
-	fs.writeFileSync(preCommitPath, preCommitHook);
+  fs.writeFileSync(preCommitPath, preCommitHook);
 
-	// Create pre-push hook
-	const prePushPath = path.join(huskyDir, 'pre-push');
-	const prePushHook = `#!/bin/sh
+  // Create pre-push hook
+  const prePushPath = path.join(huskyDir, 'pre-push');
+  const prePushHook = `#!/bin/sh
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
 npx jest --detectOpenHandles || { echo 'Tests failed. Push aborted.'; exit 1; }
   `;
-	fs.writeFileSync(prePushPath, prePushHook);
+    fs.writeFileSync(prePushPath, prePushHook);
 
-	// Make hooks executable
-	if (process.platform !== 'win32') {
-		execSync(`chmod +x ${commitMsgPath}`, { stdio: 'inherit' });
-		execSync(`chmod +x ${preCommitPath}`, { stdio: 'inherit' });
-		execSync(`chmod +x ${prePushPath}`, { stdio: 'inherit' });
-	}
+  // Make hooks executable
+  if (process.platform !== 'win32') {
+    execSync(`chmod +x ${commitMsgPath}`, { stdio: 'inherit' });
+    execSync(`chmod +x ${preCommitPath}`, { stdio: 'inherit' });
+    execSync(`chmod +x ${prePushPath}`, { stdio: 'inherit' });
+  }
 
-	console.log('Husky has been set up with a commit-msg, pre-commit and pre-push hook');
+  console.log("Husky has been set up with a commit-msg, pre-commit and pre-push hook");
 } catch (error) {
-	console.error('Error setting up Husky:', error);
-	process.exit(1);
+  console.error("Error setting up Husky:", error);
+  process.exit(1);
 }
