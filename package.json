@@ -8,9 +8,10 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"lint:fix": "next lint --fix",
 		"commitlint:last": "npx commitlint --from HEAD~1 --to HEAD --verbose || $1",
-		"format": "prettier --check --ignore-path .gitignore .",
-		"format:fix": "prettier --write --ignore-path .gitignore .",
+		"format": "prettier --check \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
+		"format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
 		"postinstall": "node setup-husky.js",
 		"prepare": "node setup-husky.js",
 		"test": "jest --detectOpenHandles",
@@ -20,12 +21,12 @@
 	},
 	"lint-staged": {
 		"src/app/**/*.{js,jsx,ts,tsx,json}": [
-			"prettier --write --ignore-path .gitignore .",
-			"next lint"
+			"prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
+			"next lint --fix"
 		],
 		"./*.{js,ts,json}": [
-			"prettier --write --ignore-path .gitignore .",
-			"next lint"
+			"prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
+			"next lint --fix"
 		]
 	},
 	"dependencies": {
@@ -47,22 +48,25 @@
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
-		"@typescript-eslint/eslint-plugin": "7.16.1",
-		"eslint": "^8",
+		"@typescript-eslint/eslint-plugin": "8.1.0",
+		"@typescript-eslint/parser": "8.1.0",
+		"eslint": "8.57.0",
 		"eslint-config-next": "14.2.5",
 		"eslint-config-prettier": "9.1.0",
-		"eslint-plugin-jest": "^28.8.0",
-		"eslint-plugin-prettier": "5.2.1",
-		"eslint-plugin-testing-library": "^6.2.2",
+		"eslint-config-react-app": "7.0.1",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-react": "7.35.0",
+		"eslint-plugin-tailwindcss": "^3.17.4",
 		"husky": "9.0.11",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
 		"lint-staged": "15.2.7",
 		"postcss": "^8",
 		"prettier": "3.3.3",
+		"prettier-plugin-tailwindcss": "0.6.6",
 		"tailwindcss": "^3.4.1",
 		"ts-jest": "^29.2.4",
 		"ts-node": "^10.9.2",
-		"typescript": "^5"
+		"typescript": "5.1.6"
 	}
 }
