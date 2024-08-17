@@ -9,53 +9,53 @@ You can find these things in the template:
 <ul>
 
 <li>
-<a style="text-decoration: none;"  href="https://nextjs.org/"> <img src="https://cdn.simpleicons.org/nextdotjs/01000f" alt="Nextjs" width=17 height=17> <b>Next.js</b>
+<a style="text-decoration: none;"  href="https://nextjs.org/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/nextdotjs/01000f" alt="Nextjs" width=17 height=17> <b>Next.js</b>
   </a> - Pre-configured, with default src and app router + Bundler analyzer
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href=[tailwind-link]> <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind css" width=17 height=17> <b>TailwindCSS</b>
+<a style="text-decoration: none;" href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind css" width=17 height=17> <b>TailwindCSS</b>
   </a> - By default, CSS Framework for rapid UI development
 </li>
 
 <li style="padding-top: 4px;">
-  <a style="text-decoration: none;" href="https://eslint.org/"> <img src="https://cdn.simpleicons.org/eslint/4B32C3" alt="Eslint"  width=17 height=17> <b>Eslint</b>
+  <a style="text-decoration: none;" href="https://eslint.org/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/eslint/4B32C3" alt="Eslint"  width=17 height=17> <b>Eslint</b>
   </a> - For cleaner code, find errors faster
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://prettier.io/"> <img src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier"  width=17 height=17> <b>Prettier</b>
+<a style="text-decoration: none;" href="https://prettier.io/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier"  width=17 height=17> <b>Prettier</b>
   </a> - To keep the code formatted
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://www.typescriptlang.org/"> <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="Typescript" width=17 height=17> <b>Typescript</b>
+<a style="text-decoration: none;" href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="Typescript" width=17 height=17> <b>Typescript</b>
   </a> - By default, configured with strict types and with ts-reset for types safety
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://jestjs.io/"> <img src="https://cdn.simpleicons.org/jest/C21325" alt="Jest" width=17 height=17>  <b>Jest</b>
-  </a> and <a style="text-decoration: none;" href="https://testing-library.com/react"> <img src="https://cdn.simpleicons.org/testinglibrary/E33332" alt="Testing Library"  width=17 height=17> <b>Testing Library</b>
+<a style="text-decoration: none;" href="https://jestjs.io/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/jest/C21325" alt="Jest" width=17 height=17>  <b>Jest</b>
+  </a> and <a style="text-decoration: none;" href="https://testing-library.com/react" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/testinglibrary/E33332" alt="Testing Library"  width=17 height=17> <b>Testing Library</b>
   </a> - For unit tests and integration tests
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://github.com/typicode/husky#readme"> <img src="https://cdn.simpleicons.org/precommit/FAB040" alt="Pre commit" width=17 height=17> <b>Husky</b>
+<a style="text-decoration: none;" href="https://github.com/typicode/husky#readme" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/precommit/FAB040" alt="Pre commit" width=17 height=17> <b>Husky</b>
   </a> - Configured to raise, git hooks for the pre commit, pre push and commit message
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://commitlint.js.org/"> <img src="https://cdn.simpleicons.org/commitlint/000000" alt="Commitlint" width=17 height=17> <b>Commitlint</b>
-  </a> with <a style="text-decoration: none;" href="https://www.conventionalcommits.org/en/v1.0.0/"> <img src="https://cdn.simpleicons.org/conventionalcommits/FE5196" alt="Pre commit" width=17 height=17> <b>Conventional commit</b></a> - To maintain a clean and solid commit history
+<a style="text-decoration: none;" href="https://commitlint.js.org/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/commitlint/000000" alt="Commitlint" width=17 height=17> <b>Commitlint</b>
+  </a> with <a style="text-decoration: none;" href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/conventionalcommits/FE5196" alt="Pre commit" width=17 height=17> <b>Conventional commit</b></a> - To maintain a clean and solid commit history
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://github.com/features/actions"> <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="Github Action" width=17 height=17> <b>Github Actions</b>
+<a style="text-decoration: none;" href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="Github Action" width=17 height=17> <b>Github Actions</b>
   </a> - Pre-configured actions for smooth workflows
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://github.com/features/actions"> <img src="https://cdn.simpleicons.org/zod/3E67B1" alt="Zod" width=17 height=17> <b>Zod</b>
+<a style="text-decoration: none;" href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/zod/3E67B1" alt="Zod" width=17 height=17> <b>Zod</b>
   </a> - For type validation
 </li>
 </ul>
@@ -71,4 +71,3 @@ You can find these things in the template:
 
 [status-workflow-badge-link]: https://github.com/MarcossIC/next-template/actions/workflows/next_analysis.yml
 [made-by-badge-link]: https://marcosic.netlify.app
-[tailwind-link]: https://tailwindcss.com/
