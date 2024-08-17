@@ -55,7 +55,7 @@ You can find these things in the template:
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/zod/3E67B1" alt="Zod" width=17 height=17> <b>Zod</b>
+<a style="text-decoration: none;" href="https://zod.dev/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/zod/3E67B1" alt="Zod" width=17 height=17> <b>Zod</b>
   </a> - For type validation
 </li>
 </ul>
