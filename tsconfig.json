@@ -41,7 +41,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "report-bundle-size.js"
   ],
   "exclude": ["node_modules"]
 }

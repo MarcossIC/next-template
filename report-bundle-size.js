@@ -5,126 +5,116 @@
  * Copyright (c) HashiCorp, Inc.
  * SPDX-License-Identifier: MPL-2.0
  */
-
-import gzSize from "gzSize";
-import mkdirp from "mkdirp";
-import fs from "fs";
-import path from "path";
-
+import { gzipSizeSync } from 'gzip-size';
+import { mkdirp } from 'mkdirp';
+import fs from 'fs';
+import path from 'node:path';
 
 // Pull options from `package.json`
-const options = getOptions()
-const BUILD_OUTPUT_DIRECTORY = getBuildOutputDirectory(options)
+const join = (so, st) => `${so}/${st}`;
+const read = (so, st) => fs.readFileSync(path.join(so, st));
+const options = getOptions();
+const BUILD_OUTPUT_DIRECTORY = getBuildOutputDirectory(options);
 
 // first we check to make sure that the build output directory exists
-const nextMetaRoot = path.join(process.cwd(), BUILD_OUTPUT_DIRECTORY)
+const nextMetaRoot = join(process.cwd(), BUILD_OUTPUT_DIRECTORY);
 try {
-  fs.accessSync(nextMetaRoot, fs.constants.R_OK)
-} catch (_err) {
+  fs.accessSync(nextMetaRoot, fs.constants.R_OK);
+} catch (err) {
   console.error(
     `No build output found at "${nextMetaRoot}" - you may not have your working directory set correctly, or not have run "next build".`
-  )
-  process.exit(1)
+  );
+  process.exit(1);
 }
 
 // if so, we can import the build manifest
-const buildMetaPath = path.join(nextMetaRoot, 'build-manifest.json');
-const appDirMetaPath = path.join(nextMetaRoot, "app-build-manifest.json");
-const buildMeta = JSON.parse(fs.readFileSync(buildMetaPath, 'utf-8'));
-const appDirMeta = JSON.parse(fs.readFileSync(appDirMetaPath, 'utf-8'));
-
+const buildMeta = JSON.parse(read(nextMetaRoot, 'build-manifest.json'));
+const appDirMeta = JSON.parse(read(nextMetaRoot, 'app-build-manifest.json'));
 
 // this memory cache ensures we dont read any script file more than once
 // bundles are often shared between pages
-const memoryCache = {}
+const cache = new Map();
 
 // since _app is the template that all other pages are rendered into,
 // every page must load its scripts. we'll measure its size here
-const globalBundle = buildMeta.pages["/_app"]
-const globalBundleSizes = getScriptSizes(globalBundle)
+const globalBundle = buildMeta.pages['/_app'];
+const globalBundleSizes = getScriptSizes(globalBundle);
 
 // next, we calculate the size of each page's scripts, after
 // subtracting out the global scripts
-const allPageSizes = Object.values(buildMeta.pages).reduce((acc, scriptPaths, i) => {
-  const pagePath = Object.keys(buildMeta.pages)[i]
-  const scriptSizes = getScriptSizes(scriptPaths.filter((scriptPath) => !globalBundle.includes(scriptPath)))
+const allPageSizes = getAllScriptSizes(buildMeta.pages, globalBundle);
 
-  acc[pagePath] = scriptSizes
+const globalAppDirBundle = buildMeta.rootMainFiles;
+const globalAppDirBundleSizes = getScriptSizes(globalAppDirBundle);
 
-  return acc
-}, {})
-
-const globalAppDirBundle = buildMeta.rootMainFiles
-const globalAppDirBundleSizes = getScriptSizes(globalAppDirBundle)
-
-const allAppDirSizes = Object.values(appDirMeta.pages).reduce((acc, scriptPaths, i) => {
-  const pagePath = Object.keys(appDirMeta.pages)[i]
-  const scriptSizes = getScriptSizes(scriptPaths.filter((scriptPath) => !globalAppDirBundle.includes(scriptPath)))
-  acc[pagePath] = scriptSizes
-
-  return acc
-}, {})
+const allAppDirSizes = getAllScriptSizes(appDirMeta.pages, globalAppDirBundle);
 
 // format and write the output
 const rawData = JSON.stringify({
   ...allAppDirSizes,
   __global: globalAppDirBundleSizes,
-})
+});
 
 // log ouputs to the gh actions panel
-console.log(rawData)
+console.log(rawData);
 
-mkdirp.sync(path.join(nextMetaRoot, "analyze/"))
-fs.writeFileSync(path.join(nextMetaRoot, "analyze/__bundle_analysis.json"), rawData)
+mkdirp.sync(join(nextMetaRoot, 'analyze/'));
+fs.writeFileSync(join(nextMetaRoot, 'analyze/__bundle_analysis.json'), rawData);
 
 // --------------
 // Util Functions
 // --------------
 
+/**
+ * Get all script sizes for all pages
+ */
+function getAllScriptSizes(metaPages, globalBundle) {
+  const res = {};
+  for (const [pagePath, scriptPaths] of Object.entries(metaPages)) {
+    const scriptSizes = getScriptSizes(
+      scriptPaths.filter(scriptPath => !globalBundle.includes(scriptPath))
+    );
+    res[pagePath] = scriptSizes;
+  }
+
+  return res;
+}
+
 // given an array of scripts, return the total of their combined file sizes
 function getScriptSizes(scriptPaths) {
-  const res = scriptPaths.reduce(
-    (acc, scriptPath) => {
-      const [rawSize, gzipSize] = getScriptSize(scriptPath)
-      acc.raw += rawSize
-      acc.gzip += gzipSize
+  let rawTotal = 0;
+  let gzipTotal = 0;
+  const scriptSize = scriptPaths.length;
+  for (let i = 0; i < scriptSize; i++) {
+    const [rawSize, gzipSize] = getScriptSize(scriptPaths[i]);
+    rawTotal += rawSize;
+    gzipTotal += gzipSize;
+  }
 
-      return acc
-    },
-    { raw: 0, gzip: 0 }
-  )
-
-  return res
+  return { raw: rawTotal, gzip: gzipTotal };
 }
 
 // given an individual path to a script, return its file size
 function getScriptSize(scriptPath) {
-  const encoding = "utf8"
-  const p = path.join(nextMetaRoot, scriptPath)
+  const encoding = 'utf8';
+  const p = join(nextMetaRoot, scriptPath);
+  if (cache.has(p)) return cache.get(p);
 
-  let rawSize, gzipSize
-  if (Object.keys(memoryCache).includes(p)) {
-    rawSize = memoryCache[p][0]
-    gzipSize = memoryCache[p][1]
-  } else {
-    const textContent = fs.readFileSync(p, encoding)
-    rawSize = Buffer.byteLength(textContent, encoding)
-    gzipSize = gzSize.sync(textContent)
-    memoryCache[p] = [rawSize, gzipSize]
-  }
-
-  return [rawSize, gzipSize]
+  const content = fs.readFileSync(p, encoding);
+  const rawSize = Buffer.byteLength(content, encoding);
+  const gzipSize = gzipSizeSync(content);
+  const result = [rawSize, gzipSize];
+  cache.set(p, result);
+  return result;
 }
 
 /**
  * Reads options from `package.json`
  */
 function getOptions(pathPrefix = process.cwd()) {
-  const packageJsonPath = path.join(pathPrefix, 'package.json');
-  const fileContent = fs.readFileSync(packageJsonPath, 'utf-8');
-  const pkg = JSON.parse(fileContent);
+  const pkg = JSON.parse(read(pathPrefix, 'package.json'));
 
-  return { ...pkg.nextBundleAnalysis, name: pkg.name }
+  return { ...pkg.nextBundleAnalysis, name: pkg.name };
 }
 
 /**
@@ -134,5 +124,5 @@ function getOptions(pathPrefix = process.cwd()) {
  * @returns {string}
  */
 function getBuildOutputDirectory(options) {
-  return options.buildOutputDirectory || ".next"
+  return options.buildOutputDirectory || '.next';
 }
