@@ -1,9 +1,5 @@
 /*
-  Explanation of commit messages.
-Message default structure: type(scope?): subject
-Example 1: fix: add missing semicolon
-Example 2: feat(blog): add comment section
-
+Disclaimer: If you have problems with "npx" you can change it in the .husky/commit-msg file or in the setup-husky.js file(In this case re-run prepare script)
 Default requirements:
 - Type must be one of [feat, fix, docs, style, refactor, test, perf, build, ci].
   * feat: A new feature
