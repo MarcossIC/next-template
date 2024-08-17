@@ -1,33 +1,33 @@
 {
   "name": "next-template",
-  "version": "0.1.0",
+  "description": "",
+  "author": "",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env FORCE_COLOR=1 next dev",
     "build": "next build",
     "analyze": "cross-env ANALYZE=true npx next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "next lint --report-unused-disable-directives",
+    "lint:fix": "next lint --report-unused-disable-directives --fix",
     "commitlint:last": "npx commitlint --from HEAD~1 --to HEAD --verbose || $1",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
-    "postinstall": "node setup-husky.js",
     "prepare": "node setup-husky.js",
-    "test": "jest --detectOpenHandles",
-    "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci"
+    "test": "cross-env FORCE_COLOR=1 jest --detectOpenHandles --passWithNoTests",
+    "test:watch": "jest --watchAll --passWithNoTests",
+    "postinstall": "npx patch-package && node setup-husky.js"
   },
   "lint-staged": {
     "src/app/**/*.{js,jsx,ts,tsx,json}": [
       "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
-      "next lint --fix"
+      "next lint --report-unused-disable-directives --fix"
     ],
     "./*.{js,ts,json}": [
       "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
-      "next lint --fix"
+      "next lint --report-unused-disable-directives --fix"
     ]
   },
   "dependencies": {
@@ -35,7 +35,6 @@
     "@t3-oss/env-nextjs": "0.11.0",
     "class-variance-authority": "0.7.0",
     "clsx": "^2.1.1",
-    "formik": "2.4.5",
     "next": "14.2.5",
     "next-compose-plugins": "2.2.1",
     "react": "^18",
@@ -73,6 +72,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "15.2.7",
     "mkdirp": "3.0.1",
+    "patch-package": "8.0.0",
     "postcss": "^8",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "0.6.6",
@@ -83,5 +83,6 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "keywords": []
 }
