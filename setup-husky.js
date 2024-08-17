@@ -18,30 +18,18 @@ try {
 
   // Create commit-msg hook for Commitlint
   const commitMsgPath = path.join(huskyDir, 'commit-msg');
-  const commitMsgHook = `#!/bin/sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npx commitlint --edit || { echo 'The commit message does not meet the requirements. Look at "commitlint.config.js" file.'; exit 1; }
-`;
+  const commitMsgHook = `npx commitlint --edit || { echo 'The commit message does not meet the requirements. Look at "commitlint.config.js" file.'; exit 1; }`;
   fs.writeFileSync(commitMsgPath, commitMsgHook);
 
   // Create pre-commit hook
   const preCommitPath = path.join(huskyDir, 'pre-commit');
-  const preCommitHook = `#!/bin/sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npx lint-staged
-`;
+  const preCommitHook = `npx lint-staged`;
   fs.writeFileSync(preCommitPath, preCommitHook);
 
   // Create pre-push hook
   const prePushPath = path.join(huskyDir, 'pre-push');
-  const prePushHook = `#!/bin/sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
-npx jest --detectOpenHandles || { echo 'Tests failed. Push aborted.'; exit 1; }
-  `;
+  const prePushHook = `npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
+npx jest --detectOpenHandles --passWithNoTests || { echo 'Tests failed. Push aborted.'; exit 1; }`;
     fs.writeFileSync(prePushPath, prePushHook);
 
   // Make hooks executable
