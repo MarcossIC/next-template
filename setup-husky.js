@@ -10,11 +10,11 @@ try {
   // Initialize Husky
   execSync('npx husky', { stdio: 'inherit' });
 
-   // Create .husky directory if it doesn't exist
-   const huskyDir = path.join(__dirname, '.husky');
-   if (!fs.existsSync(huskyDir)) {
-     fs.mkdirSync(huskyDir);
-   }
+  // Create .husky directory if it doesn't exist
+  const huskyDir = path.join(__dirname, '.husky');
+  if (!fs.existsSync(huskyDir)) {
+    fs.mkdirSync(huskyDir);
+  }
 
   // Create commit-msg hook for Commitlint
   const commitMsgPath = path.join(huskyDir, 'commit-msg');
@@ -30,7 +30,7 @@ try {
   const prePushPath = path.join(huskyDir, 'pre-push');
   const prePushHook = `npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
 npx jest --detectOpenHandles --passWithNoTests || { echo 'Tests failed. Push aborted.'; exit 1; }`;
-    fs.writeFileSync(prePushPath, prePushHook);
+  fs.writeFileSync(prePushPath, prePushHook);
 
   // Make hooks executable
   if (process.platform !== 'win32') {
@@ -39,8 +39,8 @@ npx jest --detectOpenHandles --passWithNoTests || { echo 'Tests failed. Push abo
     execSync(`chmod +x ${prePushPath}`, { stdio: 'inherit' });
   }
 
-  console.log("Husky has been set up with a commit-msg, pre-commit and pre-push hook");
+  console.log('Husky has been set up with a commit-msg, pre-commit and pre-push hook');
 } catch (error) {
-  console.error("Error setting up Husky:", error);
+  console.error('Error setting up Husky:', error);
   process.exit(1);
 }

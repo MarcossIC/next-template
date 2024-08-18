@@ -1,45 +1,45 @@
 {
-	"extends": ["next", "prettier", "react-app", "react-app/jest", "plugin:tailwindcss/recommended"],
-	"env": {
-		"jest": true,
-		"browser": true
-	},
-	"rules": {
-		"no-unused-vars": [
-			"error",
-			{
-				"vars": "local",
-				"varsIgnorePattern": "^_",
-				"args": "none",
-				"argsIgnorePattern": "[iI]gnored",
-				"caughtErrors": "all",
-				"destructuredArrayIgnorePattern": "^_",
-				"ignoreRestSiblings": true
-			}
-		],
-		"sort-imports": [
-			"error",
-			{
-				"ignoreCase": true,
-				"ignoreDeclarationSort": true
-			}
-		],
-		"no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": false }],
-		"no-undef": ["warn", { "typeof": false }],
-		"react-hooks/rules-of-hooks": "off",
-		"tailwindcss/no-custom-classname": "off",
-		"tailwindcss/classnames-order": "off",
-		"testing-library/prefer-screen-queries": "off",
-		"@next/next/no-html-link-for-pages": "off",
-		"react-hooks/exhaustive-deps": "off"
-	},
-	"overrides": [
-		{
-			"files": ["__test__/**/*.*"],
-			"plugins": ["jest", "testing-library"],
-			"env": {
-				"jest/globals": true
-			}
-		}
-	]
+  "extends": ["next", "prettier", "react-app", "react-app/jest", "plugin:tailwindcss/recommended"],
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "local",
+        "varsIgnorePattern": "^_",
+        "args": "none",
+        "argsIgnorePattern": "[iI]gnored",
+        "caughtErrors": "all",
+        "destructuredArrayIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": false }],
+    "no-undef": ["warn", { "typeof": false }],
+    "react-hooks/rules-of-hooks": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "off",
+    "testing-library/prefer-screen-queries": "off",
+    "@next/next/no-html-link-for-pages": "off",
+    "react-hooks/exhaustive-deps": "off"
+  },
+  "overrides": [
+    {
+      "files": ["__test__/**/*.*"],
+      "plugins": ["jest", "testing-library"],
+      "env": {
+        "jest/globals": true
+      }
+    }
+  ]
 }

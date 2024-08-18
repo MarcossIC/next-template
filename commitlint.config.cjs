@@ -20,5 +20,9 @@ Default requirements:
 */
 module.exports = {
   extends: ['@commitlint/config-conventional'],
-  'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'perf', 'build', 'ci', 'chore']],
+  'type-enum': [
+    2,
+    'always',
+    ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'perf', 'build', 'ci', 'chore'],
+  ],
 };
