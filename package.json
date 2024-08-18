@@ -20,14 +20,6 @@
     "test:watch": "jest --watchAll --passWithNoTests",
     "postinstall": "npx patch-package && node setup-husky.js"
   },
-  "lint-staged": {
-    "src/app/**/*.{js,jsx,ts,tsx,json}": [
-      "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore ."
-    ],
-    "./*.{js,ts,json}": [
-      "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore ."
-    ]
-  },
   "dependencies": {
     "@next/bundle-analyzer": "14.2.5",
     "@t3-oss/env-nextjs": "0.11.0",
