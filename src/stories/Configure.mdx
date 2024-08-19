@@ -10,23 +10,23 @@ import Testing from './assets/testing.png';
 import Theming from './assets/theming.png';
 
 export const RightArrow = () => (
-	<svg
-		viewBox='0 0 14 14'
-		width='8px'
-		height='14px'
-		style={{
-			marginLeft: '4px',
-			display: 'inline-block',
-			shapeRendering: 'inherit',
-			verticalAlign: 'middle',
-			fill: 'currentColor',
-			'path fill': 'currentColor',
-		}}>
-		<path d='m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z' />
-	</svg>
+  <svg
+    viewBox="0 0 14 14"
+    width="8px"
+    height="14px"
+    style={{
+      marginLeft: '4px',
+      display: 'inline-block',
+      shapeRendering: 'inherit',
+      verticalAlign: 'middle',
+      fill: 'currentColor',
+      'path fill': 'currentColor',
+    }}>
+    <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
+  </svg>
 );
 
-<Meta title='Storybook Home' />
+<Meta title="Storybook Home" />
 
 <div className="sb-container">
   <div className='sb-section-title'>
@@ -68,7 +68,7 @@ import { YourComponent } from './YourComponent';
 
 // 👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof YourComponent> = {
-	component: YourComponent,
+  component: YourComponent,
 };
 
 export default meta;
@@ -77,17 +77,17 @@ type Story = StoryObj<typeof YourComponent>;
 //Here you can add the different variants of your component
 
 export const FirstStory: Story = {
-	args: {
-		// 👇 The args you need here will depend on your component
-	},
+  args: {
+    // 👇 The args you need here will depend on your component
+  },
 };
 export const SecondStory: Story = {
-	args: {
-		// Example
-		children: 'Example',
-		type: 'Some',
-		//...
-	},
+  args: {
+    // Example
+    children: 'Example',
+    type: 'Some',
+    //...
+  },
 };
 //...
 ```
@@ -202,7 +202,7 @@ export const SecondStory: Story = {
 </div>
 
 <style>
-	{`
+  {`
   .sb-container {
     margin-bottom: 48px;
   }

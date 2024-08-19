@@ -10,7 +10,7 @@ export const decorators = [
 ];
 
 const preview: Preview = {
-	parameters: {
+  parameters: {
     a11y: {
       element: '#storybook-root',
       config: {
@@ -28,13 +28,13 @@ const preview: Preview = {
       options: {},
       manual: true,
     },
-		controls: {
-			matchers: {
-				color: /(background|color)$/i,
-				date: /Date$/i,
-			},
-		},
-	},
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
+  },
 };
 
 export default preview;
