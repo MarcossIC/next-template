@@ -4,7 +4,24 @@ import Button from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Button',
+  title: 'core/Button',
+  args: {
+    variant: 'default',
+    size: 'default',
+  },
+  argTypes: {
+    variant: {
+      options: ['default', 'outline'],
+      control: { type: 'select' },
+    },
+    size: {
+      options: ['default', 'sm', 'lg', 'full'],
+      control: { type: 'select' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+  },
 };
 
 export default meta;
@@ -17,6 +34,7 @@ export const Default: Story = {
     'data-testid': 'button-default-story',
     children: 'Button',
     onClick: fn(),
+    disabled: false,
   },
   parameters: {
     jest: ['Button.test.tsx'],
@@ -25,6 +43,29 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button'));
     await expect(args.onClick).toHaveBeenCalled();
-    await expect(canvas.getByTestId('button-default-story')).toBeInTheDocument();
+    const button = canvas.getByTestId('button-default-story');
+    await expect(button).toBeInTheDocument();
+    await expect(button).toHaveClass('bg-white');
+  },
+};
+
+export const Outline: Story = {
+  render: args => <Button {...args} />,
+  args: {
+    'data-testid': 'button-outline-story',
+    children: 'Button',
+    onClick: fn(),
+    variant: 'outline',
+    disabled: false,
+  },
+  parameters: {
+    jest: ['Button.test.tsx'],
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button'));
+    const button = canvas.getByTestId('button-outline-story');
+    await expect(button).toBeInTheDocument();
+    await expect(button).toHaveClass('bg-transparent');
   },
 };

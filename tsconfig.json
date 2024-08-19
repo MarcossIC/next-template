@@ -31,7 +31,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "test-utils": ["./__test__/test-utils.jsx"]
+      "test-utils": ["./__test__/test-utils.jsx"],
+      "utils": ["./src/lib/utils.ts"]
     }
   },
   "include": [

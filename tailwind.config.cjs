@@ -6,9 +6,13 @@ module.exports = {
   prefix: '',
   separator: ':',
   content: [
+    './index.html',
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {},
@@ -26,6 +30,11 @@ module.exports = {
         });
       });
     }),
+    plugin(({ addVariant, e })=>{
+      addVariant('not', ()=>{
+        return `${e(`not`)}:not()`
+      })
+    })
   ],
   future: {
     hoverOnlyWhenSupported: true,
