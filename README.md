@@ -46,7 +46,7 @@ You can find these things in the template:
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://jestjs.io/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/storybook/FF4785" alt="Storybook" width=17 height=17>  <b>Storybook</b>
+<a style="text-decoration: none;" href="https://storybook.js.org/docs" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/storybook/FF4785" alt="Storybook" width=17 height=17>  <b>Storybook</b>
   </a> - To create tests and use cases for your components 
 </li>
 
