@@ -11,6 +11,7 @@ export const decorators = [
 
 const preview: Preview = {
   parameters: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
     a11y: {
       element: '#storybook-root',
       config: {

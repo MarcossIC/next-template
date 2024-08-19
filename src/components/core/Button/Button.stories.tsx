@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from '@storybook/test';
-import Button from '../../components/core/Button';
+import Button from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -12,6 +12,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
+  render: args => <Button {...args} />,
   args: {
     'data-testid': 'button-default-story',
     children: 'Button',
