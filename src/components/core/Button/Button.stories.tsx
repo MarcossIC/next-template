@@ -8,6 +8,8 @@ const meta: Meta<typeof Button> = {
   args: {
     variant: 'default',
     size: 'default',
+    disabled: false,
+    onClick: fn(),
   },
   argTypes: {
     variant: {
@@ -33,8 +35,6 @@ export const Default: Story = {
   args: {
     'data-testid': 'button-default-story',
     children: 'Button',
-    onClick: fn(),
-    disabled: false,
   },
   parameters: {
     jest: ['Button.test.tsx'],
@@ -54,17 +54,16 @@ export const Outline: Story = {
   args: {
     'data-testid': 'button-outline-story',
     children: 'Button',
-    onClick: fn(),
     variant: 'outline',
-    disabled: false,
   },
   parameters: {
     jest: ['Button.test.tsx'],
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('button'));
     const button = canvas.getByTestId('button-outline-story');
+    await userEvent.click(canvas.getByRole('button'));
+    await expect(args.onClick).toHaveBeenCalled();
     await expect(button).toBeInTheDocument();
     await expect(button).toHaveClass('bg-transparent');
   },

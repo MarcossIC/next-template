@@ -30,11 +30,6 @@ module.exports = {
         });
       });
     }),
-    plugin(({ addVariant, e })=>{
-      addVariant('not', ()=>{
-        return `${e(`not`)}:not()`
-      })
-    })
   ],
   future: {
     hoverOnlyWhenSupported: true,
