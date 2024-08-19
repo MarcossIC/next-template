@@ -46,6 +46,11 @@ You can find these things in the template:
 </li>
 
 <li style="padding-top: 4px;">
+<a style="text-decoration: none;" href="https://jestjs.io/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/storybook/FF4785" alt="Storybook" width=17 height=17>  <b>Storybook</b>
+  </a> - To create tests and use cases for your components 
+</li>
+
+<li style="padding-top: 4px;">
 <a style="text-decoration: none;" href="https://github.com/typicode/husky#readme" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/precommit/FAB040" alt="Pre commit" width=17 height=17> <b>Husky</b>
   </a> - Configured to raise, git hooks for the pre commit, pre push and commit message
 </li>
@@ -120,6 +125,9 @@ The template has the following scripts available in the `package.json`:
 - `prepare`: Run husky setup script
 - `test`: Runs unit and integration tests
 - `test:watch`: Runs unit and integration tests in watch mode
+- `storybook`: Start storybook dev server
+- `prebuild:storybook`: Pre-build jest test for storybook
+- `build:storybook`: Build storybook server for deployment
 - `postinstall`: Applies patches to external dependencies and run prepare script
 
 ## :spades: Package manager
@@ -170,13 +178,17 @@ To handle the unit and integration tests, jest and testing library are being use
 
 - **Unit and integration tests**: Run Jest tests using `pnpm test`
 
+### Acceptance Tests
+
+You can write your acceptance tests using storybook's [play][storybook-play-link] function. This will allow you greater versatility, you will be able to test your tests along with the interactions that storybook gives
+
 ## 🎨 Styling
 
-For styles, added Tailwind CSS, a CSS framework for quick styling. In case you need to use your own CSS, it is recommended to use [CSS Modules](https://nextjs.org/docs/pages/building-your-application/styling/css-modules).
+For styles, added Tailwind CSS, a CSS framework for quick styling. In case you need to use your own CSS, it is recommended to use [CSS Modules][css-module-link].
 
 ### CVA
 
-The template comes by default with [cva](https://cva.style/docs), [clsx](https://github.com/lukeed/clsx#readme) and [tw-merge](https://github.com/dcastil/tailwind-merge). These utilities serve to facilitate the creation of variants for your components, this will help you maintain a design system easily. Then CVA will simplify the process of creating variants for your design systems, without compromising CSS control.
+The template comes by default with [cva][cva-docs-link], [clsx][clsx-docs-link] and [tw-merge][tw-merge-docs-link]. These utilities serve to facilitate the creation of variants for your components, this will help you maintain a design system easily. Then CVA will simplify the process of creating variants for your design systems, without compromising CSS control.
 
 <!-- Badges -->
 
@@ -189,3 +201,8 @@ The template comes by default with [cva](https://cva.style/docs), [clsx](https:/
 
 [status-workflow-badge-link]: https://github.com/MarcossIC/next-template/actions/workflows/next_analysis.yml
 [made-by-badge-link]: https://marcosic.netlify.app
+[storybook-play-link]: https://storybook.js.org/docs/writing-stories/play-function#writing-stories-with-the-play-function
+[css-module-link]: https://nextjs.org/docs/pages/building-your-application/styling/css-modules
+[cva-docs-link]: https://cva.style/docs
+[clsx-docs-link]: https://github.com/lukeed/clsx#readme
+[tw-merge-docs-link]: https://github.com/dcastil/tailwind-merge
