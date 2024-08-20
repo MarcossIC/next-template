@@ -22,6 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": false,
     "declaration": false,
+    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
@@ -42,8 +43,7 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts",
-    "report-bundle-size.js"
-  ],
+    ".next/types/**/*.ts"
+, "env.js"    ],
   "exclude": ["node_modules"]
 }

@@ -45,7 +45,7 @@ export const Default: Story = {
     await expect(args.onClick).toHaveBeenCalled();
     const button = canvas.getByTestId('button-default-story');
     await expect(button).toBeInTheDocument();
-    await expect(button).toHaveClass('bg-white');
+    await expect(button).toHaveClass('bg-slate-200');
   },
 };
 
