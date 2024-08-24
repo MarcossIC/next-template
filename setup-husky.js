@@ -6,6 +6,17 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/*
+  Husky must run in the root where the ".git" is, if your project is not in the root you must move to the root for it to work (But the .husky will be created inside the project).
+  Example:
+  execSync('cd <root> && npx husky <project-path>/.husky', { stdio: 'inherit' });
+
+  Also make sure that the hooks are executed inside the project and not outside. Before executing the hook command, move inside the project folder
+  Example:
+  cd <project-path>
+  npx lint-staged
+  */
+
 try {
   // Initialize Husky
   execSync('npx husky', { stdio: 'inherit' });
@@ -18,18 +29,21 @@ try {
 
   // Create commit-msg hook for Commitlint
   const commitMsgPath = path.join(huskyDir, 'commit-msg');
-  const commitMsgHook = `npx commitlint --edit || { echo 'The commit message does not meet the requirements. Look at "commitlint.config.js" file.'; exit 1; }`;
+  const commitMsgHook = `set +e
+npx commitlint --edit || { echo -e '\\x1b[0;31m❌The commit message does not meet the requirements. Look at "commitlint.config.js" file.\\x1b[0m'; exit 1; }`;
   fs.writeFileSync(commitMsgPath, commitMsgHook);
 
   // Create pre-commit hook
   const preCommitPath = path.join(huskyDir, 'pre-commit');
-  const preCommitHook = `npx lint-staged`;
+  const preCommitHook = `set +e
+npx lint-staged`;
   fs.writeFileSync(preCommitPath, preCommitHook);
 
   // Create pre-push hook
   const prePushPath = path.join(huskyDir, 'pre-push');
-  const prePushHook = `npx tsc || { echo 'Type checking failed. Push aborted.'; exit 1; }
-npx jest --detectOpenHandles --passWithNoTests || { echo 'Tests failed. Push aborted.'; exit 1; }`;
+  const prePushHook = `set +e
+npx tsc || { echo -e '\\x1b[0;31m❌Type checking failed. Push aborted.\\x1b[0m'; exit 1; }
+npx jest --detectOpenHandles --passWithNoTests || { echo -e '\\x1b[0;31m❌Tests failed. Push aborted.\\x1b[0m'; exit 1; }`;
   fs.writeFileSync(prePushPath, prePushHook);
 
   // Make hooks executable
