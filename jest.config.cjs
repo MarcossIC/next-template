@@ -23,6 +23,11 @@ const config = {
     '^@/(.*)$': '<rootDir>/src/$1',
     'test-utils': '<rootDir>/__test__/test-utils.jsx',
   },
+  coverageThreshold: {
+    global: {
+      lines: 60,
+    },
+  },
   // The glob patterns Jest uses to detect test files
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', '<rootDir>/e2e'],
