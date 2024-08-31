@@ -2,9 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: ["*"]
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - develop
+
+  workflow_dispatch:
 
 concurrency:
   group: gci-${{ github.head_ref }}
@@ -47,8 +51,8 @@ jobs:
       - name: NPM or Yarn install with caching
         uses: jaid/action-npm-install@v1.2.1
 
-      - if: github.event_name == 'pull_request'
-        name: Validate all commits from PR
+      - name: Validate all commits from PR
+        if: github.event_name == 'pull_request'
         run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
       - name: Linter
@@ -60,7 +64,5 @@ jobs:
       - name: Run unit tests
         run: npm run test
 
-      - uses: jwalton/gh-find-current-pr@v1
-          id: findPr
       - name: Jest coverage report
         ses: ArtiomTr/jest-coverage-report-action@v2.3.0
