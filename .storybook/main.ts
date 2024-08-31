@@ -29,5 +29,8 @@ const config: StorybookConfig = {
   features: {
     experimentalRSC: true,
   },
+  core: {
+    disableTelemetry: true,
+  },
 };
 export default config;

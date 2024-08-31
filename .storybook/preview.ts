@@ -25,9 +25,24 @@ const preview: Preview = {
             id: 'image-alt',
             enabled: true,
           },
+          {
+            id: 'color-contrast',
+            enabled: true,
+          },
+          {
+            id: 'heading-order',
+            enabled: true,
+          },
+          {
+            id: 'link-name',
+            enabled: true,
+          },
         ],
       },
-      options: {},
+      options: {
+        checks: { 'color-contrast': { options: { noScroll: true } } },
+        restoreScroll: true,
+      },
       manual: true,
     },
     controls: {
