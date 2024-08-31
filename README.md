@@ -315,7 +315,7 @@ In this case, only the tests are validated before pushing
 [commit-activity-badge]: https://img.shields.io/github/commit-activity/m/MarcossIC/next-template/main?logo=github
 [created-at-badge]: https://img.shields.io/github/created-at/MarcossIC/next-template?logo=github
 [made-by-badge]: https://img.shields.io/badge/made_by-MarcossIC-blue?color=4017d1&link=https://marcosic.netlify.app&logo=readdotcv
-[status-workflow-badge]: https://img.shields.io/github/actions/workflow/status/MarcossIC/next-template/next_analysis.yml?label=Status
+[status-workflow-badge]: https://img.shields.io/github/actions/workflow/status/MarcossIC/next-template/ci.yml?label=Status
 
 <!-- Links -->
 
