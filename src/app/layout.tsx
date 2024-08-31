@@ -2,6 +2,7 @@ import { openSans } from '@styles/font';
 import type { Metadata } from 'next';
 import '@styles/globals.css';
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Next Template',
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={openSans.className}>{children}</body>
+      <body className={cn(openSans.className, openSans.variable)}>{children}</body>
     </html>
   );
 }

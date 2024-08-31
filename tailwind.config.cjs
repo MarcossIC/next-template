@@ -15,7 +15,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        openSans: 'var(--font-open-sans)',
+      },
+    },
   },
   plugins: [
     plugin(({ addVariant, e }) => {
