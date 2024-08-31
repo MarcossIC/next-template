@@ -15,6 +15,29 @@
   }
 }
 
+@layer utilities {
+  .bg-grid-white {
+    @apply absolute inset-0;
+    background-image: linear-gradient(to right, #4f4f4f2e 1px, transparent 1px),
+      linear-gradient(to bottom, #4f4f4f2e 1px, transparent 1px);
+    background-size: 18px 26px;
+  }
+  .bg-radial-shadow-circle::after,
+  .bg-radial-shadow-circle::before {
+    @apply absolute -right-[2.25rem] top-[-10%] size-[1000px] rounded-full;
+    background-image: radial-gradient(circle 400px at 50% 300px, #3b3b3b, #00000000);
+    content: ' ';
+  }
+
+  .bg-radial-shadow-circle::after {
+    background-size: 125% 120%;
+    filter: blur(1.5rem);
+  }
+  .bg-radial-shadow-circle::before {
+    background-size: 200% 60rem;
+  }
+}
+
 body {
   max-width: 100dvw;
   overflow-x: hidden;
