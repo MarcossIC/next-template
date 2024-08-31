@@ -30,20 +30,20 @@ try {
   // Create commit-msg hook for Commitlint
   const commitMsgPath = path.join(huskyDir, 'commit-msg');
   const commitMsgHook = `set +e
-npx commitlint --edit || { echo -e '\\x1b[0;31m❌The commit message does not meet the requirements. Look at "commitlint.config.js" file.\\x1b[0m'; exit 1; }`;
+npx --no -- commitlint --edit || { echo -e "$(tput setaf 1)❌The commit message does not meet the requirements. Look at "commitlint.config.js" file.$(tput sgr0)"; exit 1; }`;
   fs.writeFileSync(commitMsgPath, commitMsgHook);
 
   // Create pre-commit hook
   const preCommitPath = path.join(huskyDir, 'pre-commit');
   const preCommitHook = `set +e
-npx lint-staged`;
+npx --no lint-staged`;
   fs.writeFileSync(preCommitPath, preCommitHook);
 
   // Create pre-push hook
   const prePushPath = path.join(huskyDir, 'pre-push');
   const prePushHook = `set +e
-npx tsc || { echo -e '\\x1b[0;31m❌Type checking failed. Push aborted.\\x1b[0m'; exit 1; }
-npx jest --detectOpenHandles --passWithNoTests || { echo -e '\\x1b[0;31m❌Tests failed. Push aborted.\\x1b[0m'; exit 1; }`;
+npx tsc --noEmit --pretty || { echo -e "$(tput setaf 1)❌Type checking failed. Push aborted.$(tput sgr0)"; exit 1; }
+npx jest --detectOpenHandles --passWithNoTests || { echo -e "$(tput setaf 1)❌Tests failed. Push aborted.$(tput sgr0)"; exit 1; }`;
   fs.writeFileSync(prePushPath, prePushHook);
 
   // Make hooks executable
