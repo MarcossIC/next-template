@@ -124,6 +124,8 @@ The template has the following scripts available in the `package.json`:
 - `start`: Starts the production server
 - `lint`: Lints the code using ESLint
 - `lint:fix`: Automatically fixes linting errors
+- `types:check`: Verify typescript types with format message
+- `clean`: Remove all files in .next, out and coverage folders
 - `commitlint:last`: Check if the last commit follows the commitlint rules
 - `format`: Checks the code for proper formatting
 - `format:fix`: Automatically fixes formatting issues
@@ -132,6 +134,7 @@ The template has the following scripts available in the `package.json`:
 - `test:watch`: Runs unit and integration tests in watch mode
 - `test:storybook`: Runs acceptans test with storybook
 - `storybook`: Start storybook dev server
+- `storybook:serve`: Up a silent storybook development server
 - `prebuild:storybook`: Pre-build jest test for storybook
 - `build:storybook`: Build storybook server for deployment
 - `postinstall`: Applies patches to external dependencies and run prepare script
