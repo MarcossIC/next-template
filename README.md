@@ -139,6 +139,46 @@ The template has the following scripts available in the `package.json`:
 - `build:storybook`: Build storybook server for deployment
 - `postinstall`: Applies patches to external dependencies and run prepare script
 
+## :file_folder: Project structure
+
+```shell
+/
+├── __test__/                 # In this folder all the tests
+│   ├── app/                  # The structure is a mirror of src
+│   ├── components/
+│   ├── lib/
+│   ├── styles/
+│   └── types/
+├── .github/                  # GitHub folder
+├── .husky/                   # Husky Hooks
+├── .storybook/               # Storybook folder
+├── public/                   # Public assets folder
+├── src/
+│   ├── app/                  # Next JS App (App Router)
+│   ├── components/           # React components
+│   ├── lib/                  # 3rd party libraries configuration
+│   ├── styles/               # Styles folder
+│   └── types/                # Types, Enums, Models, schemas
+├── .editorconfig             # Editor config
+├── .eslintignore             # Patterns eslint should ignore
+├── .eslintrc.cjs             # Eslint config
+├── .jest-test-results.json   # Jest result output
+├── .lintstagedrc.cjs         # Lintstaged config
+├── .prettierignore           # Patterns prettier should ignore
+├── commitlint.config.cjs     # Commit lint config and commit examples
+├── env.js                    # Environment variables config by t3-env
+├── jest.config.cjs           # Jest config
+├── jest.setup.js             # Jest testing library setup
+├── next.config.js            # Next config file
+├── postcss.config.cjs        # Postcss config file
+├── prettier.config.cjs       # Prettier config
+├── README.md                 # README file
+├── report-bundle-size.js     # Script to analyze bundle size
+├── setup-husky.js            # Script to raise husky on start githooks
+├── tailwind.config.cjs       # Tailwind CSS configuration
+└── tsconfig.json             # TypeScript configuration
+```
+
 ## :spades: Package manager
 
 The template does not force you to use a specific package manager so you can choose the one you want. This is why no lock file was uploaded.
