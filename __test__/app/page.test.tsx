@@ -1,13 +1,14 @@
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import RootPage from '@/app/page';
 
 describe('Root page test', () => {
   afterEach(() => {
-    cleanup();
-    jest.clearAllTimers();
+    vi.clearAllTimers();
   });
+
   it('should find root-page id', () => {
     render(<RootPage />);
-    expect(screen.getByTestId('root-page')).toBeInTheDocument();
+    expect(screen.getByTestId('root-page')).toBeDefined();
   });
 });

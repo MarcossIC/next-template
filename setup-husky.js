@@ -42,8 +42,8 @@ npx --no lint-staged`;
   // Create pre-push hook
   const prePushPath = path.join(huskyDir, 'pre-push');
   const prePushHook = `set +e
-npx tsc --noEmit --pretty || { echo -e "$(tput setaf 1)❌Type checking failed. Push aborted.$(tput sgr0)"; exit 1; }
-npx jest --detectOpenHandles --passWithNoTests || { echo -e "$(tput setaf 1)❌Tests failed. Push aborted.$(tput sgr0)"; exit 1; }`;
+npx tsc || { echo -e "$(tput setaf 1)❌Type checking failed. Push aborted.$(tput sgr0)"; exit 1; }
+npx vitest run --passWithNoTests || { echo -e "$(tput setaf 1)❌Tests failed. Push aborted.$(tput sgr0)"; exit 1; }`;
   fs.writeFileSync(prePushPath, prePushHook);
 
   // Make hooks executable

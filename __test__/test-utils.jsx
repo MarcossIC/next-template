@@ -12,9 +12,12 @@ const customRender = (ui, options) => {
   // By default you cannot use classes in the Jest environment.
   // This way you add all your classes to be able to use them
   // For Update test-globals-css: npx tailwindcss -i ./src/styles/globals.css -o ./__test__/styles/globals.css
-  const style = document.createElement('style');
-  style.innerHTML = fs.readFileSync('./app/globals.css', 'utf8');
-  document.head.appendChild(style);
+  const stylePath = path.resolve('./app/globals.css');
+  if (fs.existsSync(stylePath)) {
+    const style = document.createElement('style');
+    style.innerHTML = fs.readFileSync(stylePath, 'utf8');
+    document.head.appendChild(style);
+  }
 
   return view;
 };

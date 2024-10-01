@@ -36,9 +36,6 @@ export const Default: Story = {
     'data-testid': 'button-default-story',
     children: 'Button',
   },
-  parameters: {
-    jest: ['Button.test.tsx'],
-  },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button'));
@@ -55,9 +52,6 @@ export const Outline: Story = {
     'data-testid': 'button-outline-story',
     children: 'Button',
     variant: 'outline',
-  },
-  parameters: {
-    jest: ['Button.test.tsx'],
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);

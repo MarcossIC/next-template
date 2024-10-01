@@ -30,7 +30,7 @@
     "declaration": false,
     "allowImportingTsExtensions": true,
     "baseUrl": ".",
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "types": ["node"],
     "plugins": [
       {
         "name": "next"

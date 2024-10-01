@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     url: `${getBaseUrl()}/`,
     siteName: 'Next Template',
     type: 'website',
+    images: '',
   },
   twitter: {
     card: 'summary_large_image',
