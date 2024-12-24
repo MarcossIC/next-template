@@ -30,7 +30,7 @@
     "declaration": false,
     "allowImportingTsExtensions": true,
     "baseUrl": ".",
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
     "plugins": [
       {
         "name": "next"
@@ -48,8 +48,15 @@
     "types.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.mjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".storybook/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "./out/**/*",
+    "./node_modules/**/*",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.e2e.ts"
+  ]
 }

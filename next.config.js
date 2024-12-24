@@ -1,9 +1,8 @@
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import withPlugins from 'next-compose-plugins';
-import { env } from './env.js';
 
 /** @type {import('next').NextConfig} */
-const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
+const config = withPlugins([[withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })]], {
   reactStrictMode: true,
   logging: {
     fetches: {
@@ -11,6 +10,8 @@ const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
     },
   },
   experimental: { instrumentationHook: true },
+  widenClientFileUpload: true,
+  hideSourceMaps: true,
 });
 
 export default config;

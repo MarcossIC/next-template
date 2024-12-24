@@ -22,6 +22,13 @@ export default defineConfig({
     alias,
   },
   test: {
+    globals: true,
+    include: ['__test__/**/*.test.{js,jsx,ts,tsx}'],
+    coverage: {
+      include: ['src/**/*'],
+      exclude: ['src/**/*.stories.{js,jsx,ts,tsx}', '**/*.d.ts'],
+    },
     environment: 'jsdom',
+    setupFiles: ['./vitest-setup.ts'],
   },
 });

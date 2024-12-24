@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 /**
  * Copyright (c) HashiCorp, Inc.
  * SPDX-License-Identifier: MPL-2.0
@@ -20,7 +18,7 @@ const BUILD_OUTPUT_DIRECTORY = getBuildOutputDirectory(options);
 const nextMetaRoot = join(process.cwd(), BUILD_OUTPUT_DIRECTORY);
 try {
   fs.accessSync(nextMetaRoot, fs.constants.R_OK);
-} catch (err) {
+} catch {
   console.error(
     `No build output found at "${nextMetaRoot}" - you may not have your working directory set correctly, or not have run "next build".`
   );
@@ -37,12 +35,12 @@ const cache = new Map();
 
 // since _app is the template that all other pages are rendered into,
 // every page must load its scripts. we'll measure its size here
-const globalBundle = buildMeta.pages['/_app'];
-const globalBundleSizes = getScriptSizes(globalBundle);
+// const globalBundle = buildMeta.pages['/_app'];
+// const globalBundleSizes = getScriptSizes(globalBundle);
 
 // next, we calculate the size of each page's scripts, after
 // subtracting out the global scripts
-const allPageSizes = getAllScriptSizes(buildMeta.pages, globalBundle);
+// const allPageSizes = getAllScriptSizes(buildMeta.pages, globalBundle);
 
 const globalAppDirBundle = buildMeta.rootMainFiles;
 const globalAppDirBundleSizes = getScriptSizes(globalAppDirBundle);

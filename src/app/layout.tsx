@@ -2,8 +2,8 @@ import { openSans } from '@styles/font';
 import type { Metadata, Viewport } from 'next';
 import '@styles/globals.css';
 import type { ReactNode } from 'react';
-import { cn } from '@/lib/utils';
 import { getBaseUrl } from 'utils';
+import { cn } from '@/lib/utils';
 
 export const viewport: Viewport = {
   width: 'device-width',
