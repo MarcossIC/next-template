@@ -40,7 +40,8 @@
 			"@styles/*": ["./src/styles/*"],
 			"@/*": ["./src/*"],
 			"test-utils": ["./__test__/test-utils.jsx"],
-			"utils": ["./src/lib/utils.ts"]
+			"utils": ["./src/lib/utils.ts"],
+			"@environment": ["env.ts"]
 		}
 	},
 	"include": [
@@ -49,7 +50,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		".storybook/*.ts"
+		".storybook/*.ts",
+		"next.config.mts"
 	],
 	"exclude": [
 		"./out/**/*",

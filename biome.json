@@ -1,9 +1,31 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
-	"files": { "ignoreUnknown": false, "ignore": [] },
-	"formatter": { "enabled": true, "indentStyle": "tab" },
-	"organizeImports": { "enabled": true },
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"ignore": [
+			".next/*",
+			".swr",
+			".husky",
+			"public",
+			"node_modules",
+			"dist/*",
+			".vercel",
+			".vscode",
+			"vitest.config.ts"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab"
+	},
+	"organizeImports": {
+		"enabled": true
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -104,7 +126,12 @@
 			"vitest.config.ts"
 		]
 	},
-	"javascript": { "formatter": { "quoteStyle": "double" }, "globals": [] },
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double"
+		},
+		"globals": []
+	},
 	"overrides": [
 		{
 			"include": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
@@ -311,8 +338,12 @@
 		},
 		{
 			"include": ["**/*.test.ts?(x)", "**/*.spec.ts"],
-			"javascript": { "globals": [] },
-			"linter": { "rules": {} }
+			"javascript": {
+				"globals": []
+			},
+			"linter": {
+				"rules": {}
+			}
 		}
 	]
 }

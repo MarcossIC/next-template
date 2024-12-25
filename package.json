@@ -6,12 +6,12 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "cross-env FORCE_COLOR=1 next dev --turbo",
+		"dev": "cross-env FORCE_COLOR=1 next dev --turbopack",
 		"build": "next build",
 		"analyze": "cross-env ANALYZE=true npx next build",
 		"start": "next start",
 		"lint": "biome check",
-		"lint:fix": "biome check --write",
+		"lint:fix": "biome check --fix --unsafe",
 		"types:check": "tsc --noEmit --pretty",
 		"clean": "rimraf .next out coverage .swc",
 		"commitlint:last": "npx commitlint --from HEAD~1 --to HEAD --verbose || $1",
@@ -33,13 +33,11 @@
 		"class-variance-authority": "0.7.1",
 		"clsx": "2.1.1",
 		"next": "15.1.2",
-		"next-compose-plugins": "2.2.1",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
 		"sharp": "0.33.5",
 		"tailwind-merge": "2.6.0",
-		"zod": "3.24.1",
-		"zustand": "5.0.2"
+		"zod": "3.24.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

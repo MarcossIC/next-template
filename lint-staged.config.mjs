@@ -1,7 +1,7 @@
 import path from "path";
 
 const runBiomeCommand = (filenames) =>
-	`biome check --linter-enabled=true --formatter-enabled=true --organize-imports-enabled=true --write ${filenames.map((f) => `"${path.relative(process.cwd(), f)}"`).join(" ")}`;
+	`biome check --linter-enabled=true --formatter-enabled=true --organize-imports-enabled=true --fix ${filenames.map((f) => `"${path.relative(process.cwd(), f)}"`).join(" ")}`;
 
 export default {
 	"./*.{js,ts,cjs}": [runBiomeCommand],
