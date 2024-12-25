@@ -6,7 +6,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "cross-env FORCE_COLOR=1 next dev",
+		"dev": "cross-env FORCE_COLOR=1 next dev --turbo",
 		"build": "next build",
 		"analyze": "cross-env ANALYZE=true npx next build",
 		"start": "next start",
