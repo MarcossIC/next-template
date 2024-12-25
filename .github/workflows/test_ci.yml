@@ -39,10 +39,10 @@ jobs:
         run: pnpm lint
 
       - name: 📐 Run Type checking
-        run: npm run types:check
+        run: pnpm types:check
 
       - name: 📐 Run unit tests
-        run: npm run test
+        run: pnpm test
 
       - name: 🔨 Run build client
         run: pnpm build
