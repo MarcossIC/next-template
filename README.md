@@ -25,13 +25,8 @@ You can find these things in the template:
 </li>
 
 <li style="padding-top: 4px;">
-  <a style="text-decoration: none;" href="https://eslint.org/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/eslint/4B32C3" alt="Eslint"  width=17 height=17> <b>Eslint</b>
-  </a> - For cleaner code, find errors faster
-</li>
-
-<li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://prettier.io/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier"  width=17 height=17> <b>Prettier</b>
-  </a> - To keep the code formatted
+  <a style="text-decoration: none;" href="https://biomejs.dev/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/biome/60A5FA" alt="biome"  width=17 height=17> <b>Biome</b>
+  </a> - To find and fix linting, formatting, and import order problems
 </li>
 
 <li style="padding-top: 4px;">
@@ -40,7 +35,7 @@ You can find these things in the template:
 </li>
 
 <li style="padding-top: 4px;">
-<a style="text-decoration: none;" href="https://jestjs.io/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/jest/C21325" alt="Jest" width=17 height=17>  <b>Jest</b>
+<a style="text-decoration: none;" href="https://vitest.dev/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/vitess/F16728" alt="vitess" width=17 height=17>  <b>Vitest</b>
   </a> and <a style="text-decoration: none;" href="https://testing-library.com/react" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/testinglibrary/E33332" alt="Testing Library"  width=17 height=17> <b>Testing Library</b>
   </a> - For unit tests and integration tests
 </li>
@@ -118,17 +113,17 @@ If you do not want to run husky on every installation, remove this `&& node setu
 
 The template has the following scripts available in the `package.json`:
 
-- `dev`: Starts the development server
+- `dev`: Starts the development server with turbopack
 - `build`: Builds the app for production
 - `analyze`: Analyzes the bundle sizes for Client, Server and Edge environments
 - `start`: Starts the production server
-- `lint`: Lints the code using ESLint
-- `lint:fix`: Automatically fixes linting errors
+- `lint`: Check lints, formats and import sort with Biome
+- `lint:fix`: Automatically fixes linting errors with Biome
 - `types:check`: Verify typescript types with format message
 - `clean`: Remove all files in .next, out and coverage folders
 - `commitlint:last`: Check if the last commit follows the commitlint rules
-- `format`: Checks the code for proper formatting
-- `format:fix`: Automatically fixes formatting issues
+- `format`: Just check that the code is in the correct format with Biome
+- `format:fix`: Only automatically fixes formatting issues with biome
 - `prepare`: Run husky setup script
 - `test`: Runs unit and integration tests
 - `test:watch`: Runs unit and integration tests in watch mode
@@ -149,6 +144,7 @@ The template has the following scripts available in the `package.json`:
 │   ├── lib/
 │   ├── styles/
 │   └── types/
+├── .vscode/                  # VSCode config folder
 ├── .github/                  # GitHub folder
 ├── .husky/                   # Husky Hooks
 ├── .storybook/               # Storybook folder
@@ -158,24 +154,20 @@ The template has the following scripts available in the `package.json`:
 │   ├── components/           # React components
 │   ├── lib/                  # 3rd party libraries configuration
 │   ├── styles/               # Styles folder
-│   └── types/                # Types, Enums, Models, schemas
+│   └── models/                # Types, Enums, Models, schemas
 ├── .editorconfig             # Editor config
-├── .eslintignore             # Patterns eslint should ignore
-├── .eslintrc.cjs             # Eslint config
-├── .jest-test-results.json   # Jest result output
-├── .lintstagedrc.cjs         # Lintstaged config
-├── .prettierignore           # Patterns prettier should ignore
+├── biome.json                # Patterns eslint should ignore 
+├── lint-staged.config.mjs    # Lintstaged config
 ├── commitlint.config.cjs     # Commit lint config and commit examples
-├── env.js                    # Environment variables config by t3-env
-├── jest.config.cjs           # Jest config
-├── jest.setup.js             # Jest testing library setup
-├── next.config.js            # Next config file
+├── env.ts                    # Environment variables config by t3-env
+├── next.config.ts            # Next config file
 ├── postcss.config.cjs        # Postcss config file
-├── prettier.config.cjs       # Prettier config
 ├── README.md                 # README file
 ├── report-bundle-size.js     # Script to analyze bundle size
 ├── setup-husky.js            # Script to raise husky on start githooks
-├── tailwind.config.cjs       # Tailwind CSS configuration
+├── tailwind.config.mjs       # Tailwind CSS configuration
+├── vitest.config.ts          # Vitest config
+├── vitest-setup.ts           # Vitest testing library setup
 └── tsconfig.json             # TypeScript configuration
 ```
 
@@ -220,14 +212,15 @@ You only need one, but I leave you examples for these 3 handlers:
 
 ## :shipit: Testing
 
-To handle the unit and integration tests, jest and testing library are being used. Playwright is used for the e2e tests
+We use **Vitest** for unit and integration tests, leveraging its fast performance and modern testing features. For end-to-end (e2e) testing, **Playwright** is utilized, providing robust browser automation capabilities.
 
-### Runing test
+### Running Tests
 
-Example with pnpm:
+Below are some examples using `pnpm`:
 
-- **Unit and integration tests**: Run Jest tests using `pnpm test`
-- **Acceptance Tests**: Run storybook test using `pnpm test:storybook`
+- **Unit and Integration Tests**: Execute tests with Vitest using `pnpm test`.
+- **Acceptance Tests**: Run Storybook tests with `pnpm test:storybook`.
+
 
 ### StoryBook
 
