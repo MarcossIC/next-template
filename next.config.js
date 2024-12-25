@@ -11,9 +11,6 @@ const config = withPlugins(
 				fullUrl: true,
 			},
 		},
-		experimental: { instrumentationHook: true },
-		widenClientFileUpload: true,
-		hideSourceMaps: true,
 		eslint: {
 			ignoreDuringBuilds: true,
 		},
