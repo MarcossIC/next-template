@@ -1,0 +1,318 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
+	"files": { "ignoreUnknown": false, "ignore": [] },
+	"formatter": { "enabled": true, "indentStyle": "tab" },
+	"organizeImports": { "enabled": true },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": false,
+			"performance": {
+				"noBarrelFile": "info",
+				"noReExportAll": "error"
+			},
+			"nursery": {
+				"noImgElement": "error",
+				"noHeadImportInDocument": "error",
+				"noHeadElement": "error",
+				"noDuplicateElseIf": "error",
+				"noMissingVarFunction": "error",
+				"noDuplicateCustomProperties": "info",
+				"noIrregularWhitespace": "error",
+				"noUnknownPseudoClass": "error"
+			},
+			"a11y": {
+				"noAccessKey": "error",
+				"noAriaUnsupportedElements": "error",
+				"noAutofocus": "error",
+				"noDistractingElements": "error",
+				"noHeaderScope": "error",
+				"noInteractiveElementToNoninteractiveRole": "error",
+				"noLabelWithoutControl": "error",
+				"noNoninteractiveElementToInteractiveRole": "error",
+				"noNoninteractiveTabindex": "error",
+				"noPositiveTabindex": "error",
+				"noRedundantAlt": "error",
+				"noRedundantRoles": "error",
+				"useAltText": "error",
+				"useAnchorContent": "error",
+				"useAriaActivedescendantWithTabindex": "error",
+				"useAriaPropsForRole": "error",
+				"useFocusableInteractive": "error",
+				"useHeadingContent": "error",
+				"useHtmlLang": "error",
+				"useIframeTitle": "error",
+				"useKeyWithClickEvents": "error",
+				"useKeyWithMouseEvents": "error",
+				"useMediaCaption": "error",
+				"useValidAnchor": "error",
+				"useValidAriaProps": "error",
+				"useValidAriaRole": "error",
+				"useValidAriaValues": "error",
+				"useButtonType": "warn"
+			},
+			"complexity": {
+				"noUselessTypeConstraint": "error",
+				"noExcessiveNestedTestSuites": "error",
+				"noUselessSwitchCase": "error",
+				"noStaticOnlyClass": "error",
+				"useOptionalChain": "error",
+				"noThisInStatic": "error"
+			},
+			"correctness": {
+				"noUnusedVariables": "error",
+				"useArrayLiterals": "off",
+				"noInvalidPositionAtImportRule": "error",
+				"noUnmatchableAnbSelector": "error",
+				"useJsxKeyInIterable": "error",
+				"useHookAtTopLevel": "off",
+				"noUnusedImports": "error"
+			},
+			"style": {
+				"noDefaultExport": "off",
+				"noDoneCallback": "warn",
+				"noNamespace": "error",
+				"useAsConstAssertion": "error",
+				"useCollapsedElseIf": "error",
+				"noUselessElse": "error",
+				"useShorthandAssign": "error",
+				"useExportType": "error"
+			},
+			"suspicious": {
+				"noExplicitAny": "error",
+				"noExtraNonNullAssertion": "error",
+				"noMisleadingInstantiator": "error",
+				"noUnsafeDeclarationMerging": "error",
+				"useNamespaceKeyword": "error",
+				"noApproximativeNumericConstant": "error",
+				"noLabelVar": "warn",
+				"noFocusedTests": "error",
+				"noDuplicateJsxProps": "error",
+				"useIsArray": "error"
+			}
+		},
+		"ignore": [
+			".next/*",
+			".swr",
+			".husky",
+			"public",
+			"node_modules",
+			"dist/*",
+			".vercel",
+			".vscode",
+			"vitest.config.ts"
+		]
+	},
+	"javascript": { "formatter": { "quoteStyle": "double" }, "globals": [] },
+	"overrides": [
+		{
+			"include": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noConstAssign": "off",
+						"noGlobalObjectCalls": "off",
+						"noInvalidBuiltinInstantiation": "off",
+						"noInvalidConstructorSuper": "off",
+						"noNewSymbol": "off",
+						"noSetterReturn": "off",
+						"noUndeclaredVariables": "off",
+						"noUnreachable": "off",
+						"noUnreachableSuper": "off",
+						"noFlatMapIdentity": "error",
+						"useYield": "error"
+					},
+					"style": {
+						"noArguments": "error",
+						"noVar": "error",
+						"useConst": "error",
+						"noYodaExpression": "error"
+					},
+					"suspicious": {
+						"noClassAssign": "off",
+						"noDuplicateClassMembers": "off",
+						"noDuplicateObjectKeys": "off",
+						"noDuplicateParameters": "off",
+						"noFunctionAssign": "off",
+						"noImportAssign": "off",
+						"noRedeclare": "off",
+						"noUnsafeNegation": "off",
+						"useGetterReturn": "off",
+						"noDoubleEquals": "error",
+						"noDuplicateCase": "error",
+						"noEmptyBlock": "error"
+					}
+				}
+			}
+		},
+		{
+			"include": ["src/**/*.{ts,tsx}"],
+			"javascript": {
+				"globals": [
+					"onscrollend",
+					"onpointerleave",
+					"oncontextrestored",
+					"onemptied",
+					"ongamepaddisconnected",
+					"onkeypress",
+					"onloadeddata",
+					"onmouseup",
+					"onvolumechange",
+					"onpaste",
+					"onstorage",
+					"onkeyup",
+					"onabort",
+					"oncut",
+					"ontransitionrun",
+					"onafterprint",
+					"onblur",
+					"ondurationchange",
+					"ontransitionstart",
+					"oncanplaythrough",
+					"onanimationend",
+					"onmouseleave",
+					"ondragleave",
+					"onplay",
+					"onunhandledrejection",
+					"onbeforeprint",
+					"onpointercancel",
+					"onsubmit",
+					"ondragstart",
+					"onmessage",
+					"location",
+					"onoffline",
+					"onappinstalled",
+					"onwheel",
+					"onended",
+					"onkeydown",
+					"onclick",
+					"onfocus",
+					"onscroll",
+					"ongamepadconnected",
+					"oncanplay",
+					"onpointerdown",
+					"ondeviceorientationabsolute",
+					"onauxclick",
+					"ondevicemotion",
+					"onratechange",
+					"ontransitionend",
+					"onscrollsnapchanging",
+					"onchange",
+					"onselect",
+					"onbeforeinstallprompt",
+					"onbeforetoggle",
+					"onmouseout",
+					"ontimeupdate",
+					"ondragover",
+					"oncuechange",
+					"ontransitioncancel",
+					"onprogress",
+					"onbeforeinput",
+					"onpointerenter",
+					"onmouseenter",
+					"oninvalid",
+					"onpointerout",
+					"onpagereveal",
+					"onpause",
+					"onanimationstart",
+					"onwaiting",
+					"onscrollsnapchange",
+					"ondeviceorientation",
+					"onclose",
+					"onbeforeunload",
+					"oncancel",
+					"onseeked",
+					"onpointerover",
+					"ongotpointercapture",
+					"onloadedmetadata",
+					"onpageshow",
+					"onstalled",
+					"oncontextmenu",
+					"onreset",
+					"ondrag",
+					"onbeforematch",
+					"onload",
+					"onlostpointercapture",
+					"onsuspend",
+					"onselectionchange",
+					"onpagehide",
+					"onrejectionhandled",
+					"onunload",
+					"onanimationcancel",
+					"onmousedown",
+					"onpointerup",
+					"onmouseover",
+					"onformdata",
+					"oncontentvisibilityautostatechange",
+					"onresize",
+					"onsearch",
+					"ontoggle",
+					"exports",
+					"onpageswap",
+					"onbeforexrselect",
+					"onlanguagechange",
+					"ondragenter",
+					"onerror",
+					"onpointermove",
+					"onmousemove",
+					"ondrop",
+					"onhashchange",
+					"onsecuritypolicyviolation",
+					"onslotchange",
+					"oncopy",
+					"onanimationiteration",
+					"ondblclick",
+					"ondragend",
+					"onpointerrawupdate",
+					"onpopstate",
+					"onplaying",
+					"oncontextlost",
+					"onloadstart",
+					"onseeking",
+					"oninput",
+					"onmessageerror",
+					"onselectstart",
+					"onmousewheel",
+					"ononline"
+				]
+			},
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noEmptyPattern": "error",
+						"noUndeclaredVariables": "warn",
+						"noUnusedVariables": "error",
+						"useExhaustiveDependencies": "off",
+						"useHookAtTopLevel": "off"
+					}
+				}
+			}
+		},
+		{
+			"include": ["src/**/*.tsx"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useFilenamingConvention": "off"
+					}
+				}
+			}
+		},
+		{
+			"include": ["**/*.css"],
+			"linter": {
+				"rules": {
+					"nursery": {
+						"noDuplicateProperties": "off"
+					}
+				}
+			}
+		},
+		{
+			"include": ["**/*.test.ts?(x)", "**/*.spec.ts"],
+			"javascript": { "globals": [] },
+			"linter": { "rules": {} }
+		}
+	]
+}
