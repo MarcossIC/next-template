@@ -10,6 +10,7 @@ on:
   workflow_dispatch:
 
 concurrency:
+  group: ${{ github.ref == 'refs/heads/main' && format('main-test-{0}', github.sha) || format('test-{0}', github.ref) }}
   cancel-in-progress: true
 
 jobs:
