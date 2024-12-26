@@ -16,7 +16,7 @@ concurrency:
 jobs:
   testing:
     name: 🛠️ Run Testing and Pre Buiild
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: 🔄 Checkout code
@@ -34,6 +34,11 @@ jobs:
         run: |
           pnpm config set store-dir ~/.pnpm-store
           pnpm install --prefer-frozen-lockfile --ignore-scripts
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
 
       - name: 📐 Run Linter
         run: pnpm lint
@@ -60,6 +65,8 @@ jobs:
     strategy:
       # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
+      matrix:
+        containers: [1, 2, 3]
     steps:
       - name: 🔄 Checkout code
         uses: actions/checkout@v4
@@ -85,25 +92,26 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          build: pnpm build
+          install-command: pnpm install --prefer-frozen-lockfile --ignore-scripts
+
+      - name: 🔨 Run build client
+        run: pnpm build
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          if-no-files-found: ignore
+          command: pnpm cy:serve:ci
           spec: __test__/**/**.{cy,spec}.{ts,tsx,js}
-          build: pnpm build
-          start: pnpm dev
           component: true
           browser: chrome
-          headed: true
-          auto-cancel-after-failures: 2
           record: true
           parallel: true
           install: false
           wait-on: 'http://localhost:3000'
-          group: ${{ github.ref == 'refs/heads/main' && format('main-test-{0}', github.sha) || format('test-{0}', github.ref) }}
+          wait-on-timeout: 120
+          group: "UI - Chrome"
           ci-build-id: ${{ steps.uuid.outputs.value }}
+          config-file: cypress.config.ts
         env:
           PORT: api.dev.local
           CYPRESS_HOST_PORT: 3000
