@@ -35,13 +35,13 @@ jobs:
           pnpm config set store-dir ~/.pnpm-store
           pnpm install --prefer-frozen-lockfile --ignore-scripts
 
-      - name: 📐 Run Linter
+      - name: 🧹 Run Linter
         run: pnpm lint
 
-      - name: 📐 Run Type checking
+      - name: 🔍 Run Type checking
         run: pnpm types:check
 
-      - name: 📐 Run unit tests
+      - name: 🧪 Run unit tests
         run: pnpm unit:run
 
       - name: 🔨 Run build client
@@ -52,6 +52,7 @@ jobs:
 
   cypress-run:
     needs: [testing]
+    name: 🚀 Run Cypress Tests
     runs-on: ubuntu-24.04
     # Cypress Docker image from https://hub.docker.com/r/cypress
     container:
@@ -66,7 +67,7 @@ jobs:
       - name: 🔄 Checkout code
         uses: actions/checkout@v4
 
-      - name: Generate unique ID 💎
+      - name: 💎 Generate unique ID
         id: uuid
         run: echo "value=sha-$GITHUB_SHA-time-$(date +"%s")" >> $GITHUB_OUTPUT
 
@@ -75,20 +76,15 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: 🛠️ Setup/ Install pnpm 9.7.0 manually
+      - name: 📦 Setup/ Install pnpm 9.7.0 manually
         run: npm install -g pnpm@9.7.0
 
-      - name: 🛠️ Setup/ Install frontend dependencies
-        run: |
-          pnpm config set store-dir ~/.pnpm-store
-          pnpm install --prefer-frozen-lockfile --ignore-scripts
-
-      - name: Cypress install
+      - name: 🔧 Cypress Install & Verify
         run: |
           npx cypress install
           npx cypress verify
 
-      - name: Cypress install
+      - name: 📦 Install Dependencies for Cypress
         uses: cypress-io/github-action@v6
         with:
           runTests: false
@@ -97,10 +93,11 @@ jobs:
       - name: 🔨 Run build client
         run: pnpm build
 
-      - name: Cypress run
+      - name: 🌐 Cypress run
         uses: cypress-io/github-action@v6
         with:
-          command: pnpm cy:serve:ci
+          command: pnpm cy:run
+          start: pnpm start
           spec: __test__/**/**.{cy,spec}.{ts,tsx,js}
           component: true
           browser: chrome
@@ -108,7 +105,7 @@ jobs:
           parallel: true
           install: false
           wait-on: 'http://localhost:3000'
-          wait-on-timeout: 120
+          wait-on-timeout: 140
           group: "UI - Chrome"
           ci-build-id: ${{ steps.uuid.outputs.value }}
           config-file: cypress.config.ts
