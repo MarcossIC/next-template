@@ -79,6 +79,11 @@ jobs:
       - name: 📦 Setup/ Install pnpm 9.7.0 manually
         run: npm install -g pnpm@9.7.0
 
+      - name: 🛠️ Setup/ Install frontend dependencies
+        run: |
+          pnpm config set store-dir ~/.pnpm-store
+          pnpm install --prefer-frozen-lockfile --ignore-scripts
+
       - name: 🔧 Cypress Install & Verify
         run: |
           npx cypress install
