@@ -109,5 +109,4 @@ jobs:
           CYPRESS_HOST_PORT: 3000
           CYPRESS_BASE_URL_PREFIX: 3001
           NEXT_PUBLIC_APP_URL: http://localhost:3000
-          NEXT_PUBLIC_APP_URL: http://localhost:3000
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
