@@ -16,7 +16,8 @@
 			"dist/*",
 			".vercel",
 			".vscode",
-			"vitest.config.ts"
+			"vitest.config.ts",
+			"coverage/*"
 		]
 	},
 	"formatter": {
@@ -123,7 +124,8 @@
 			"dist/*",
 			".vercel",
 			".vscode",
-			"vitest.config.ts"
+			"vitest.config.ts",
+			"coverage/*"
 		]
 	},
 	"javascript": {
@@ -337,7 +339,10 @@
 			}
 		},
 		{
-			"include": ["__test__/**/*.test.ts?(x)", "__test__/**/*.{e2e,cy,spec}.{js,ts}"],
+			"include": [
+				"__test__/**/*.test.ts?(x)",
+				"__test__/**/*.{e2e,cy,spec}.{js,ts}"
+			],
 			"javascript": {
 				"globals": ["$", "_", "externalVariable", "cy", "vi"]
 			},
