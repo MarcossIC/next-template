@@ -8,6 +8,8 @@ const {
 	VERCEL_ENV,
 	VERCEL_PROJECT_PRODUCTION_URL,
 	VERCEL_URL,
+	CYPRESS_HOST_PORT,
+	CYPRESS_BASE_URL_PREFIX,
 } = process.env;
 
 export const env = createEnv({
@@ -19,6 +21,12 @@ export const env = createEnv({
 		VERCEL_ENV: z.string().optional(),
 		VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
 		VERCEL_URL: z.string().optional(),
+		CYPRESS_BASE_URL_PREFIX: z.string().optional(),
+		CYPRESS_HOST_PORT: z
+			.string()
+			.optional()
+			.transform((value) => Number(value))
+			.default("3001"),
 		PORT: z
 			.string()
 			.optional()
@@ -35,5 +43,7 @@ export const env = createEnv({
 		VERCEL_ENV: VERCEL_ENV,
 		VERCEL_URL: VERCEL_URL,
 		VERCEL_PROJECT_PRODUCTION_URL: VERCEL_PROJECT_PRODUCTION_URL,
+		CYPRESS_HOST_PORT: CYPRESS_HOST_PORT,
+		CYPRESS_BASE_URL_PREFIX: CYPRESS_BASE_URL_PREFIX,
 	},
 });

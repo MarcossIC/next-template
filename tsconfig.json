@@ -30,7 +30,7 @@
 		"declaration": false,
 		"allowImportingTsExtensions": true,
 		"baseUrl": ".",
-		"types": ["node", "vitest/globals"],
+		"types": ["node", "vitest/globals", "cypress"],
 		"plugins": [
 			{
 				"name": "next"
@@ -41,7 +41,7 @@
 			"@/*": ["./src/*"],
 			"test-utils": ["./__test__/test-utils.jsx"],
 			"utils": ["./src/lib/utils.ts"],
-			"@environment": ["env.ts"]
+			"@environment": ["./env.ts"]
 		}
 	},
 	"include": [

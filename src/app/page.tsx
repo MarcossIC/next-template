@@ -10,7 +10,10 @@ export default function App() {
 
 			<div className="bg-radial-shadow-circle relative z-10 flex min-h-screen w-fit flex-col items-center justify-center">
 				<main className="px-4 text-center">
-					<h1 className="relative z-20 mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-7xl font-bold text-transparent">
+					<h1
+						data-testid="root-h1"
+						className="relative z-20 mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-7xl font-bold text-transparent"
+					>
 						Next.js Template
 					</h1>
 					<p className="relative z-20 text-2xl text-gray-400">
