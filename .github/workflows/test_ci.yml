@@ -42,7 +42,7 @@ jobs:
         run: pnpm types:check
 
       - name: 📐 Run unit tests
-        run: pnpm test
+        run: pnpm unit:run
 
       - name: 🔨 Run build client
         run: pnpm build
@@ -50,3 +50,64 @@ jobs:
       - name: 🛡️ Run prune
         run: pnpm prune --prod --ignore-scripts
 
+  cypress-run:
+    needs: [testing]
+    runs-on: ubuntu-24.04
+    # Cypress Docker image from https://hub.docker.com/r/cypress
+    container:
+      image: cypress/browsers:latest
+      options: --user 1001
+    strategy:
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
+    steps:
+      - name: 🔄 Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate unique ID 💎
+        id: uuid
+        run: echo "value=sha-$GITHUB_SHA-time-$(date +"%s")" >> $GITHUB_OUTPUT
+
+      - name: 🛠️ Setup/ Use Node.js 20.x
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: 20.x
+
+      - name: 🛠️ Setup/ Install pnpm 9.7.0 manually
+        run: npm install -g pnpm@9.7.0
+
+      - name: 🛠️ Setup/ Install frontend dependencies
+        run: |
+          pnpm config set store-dir ~/.pnpm-store
+          pnpm install --prefer-frozen-lockfile --ignore-scripts
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          build: pnpm build
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          if-no-files-found: ignore
+          spec: __test__/**/**.{cy,spec}.{ts,tsx,js}
+          build: pnpm build
+          start: pnpm dev
+          component: true
+          browser: chrome
+          headed: true
+          auto-cancel-after-failures: 2
+          record: true
+          parallel: true
+          install: false
+          wait-on: 'http://localhost:3000'
+          group: ${{ github.ref == 'refs/heads/main' && format('main-test-{0}', github.sha) || format('test-{0}', github.ref) }}
+          ci-build-id: ${{ steps.uuid.outputs.value }}
+        env:
+          PORT: api.dev.local
+          CYPRESS_HOST_PORT: 3000
+          CYPRESS_BASE_URL_PREFIX: 3001
+          NEXT_PUBLIC_APP_URL: http://localhost:3000
+          NEXT_PUBLIC_APP_URL: http://localhost:3000
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
