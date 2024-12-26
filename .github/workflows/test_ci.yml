@@ -35,11 +35,6 @@ jobs:
           pnpm config set store-dir ~/.pnpm-store
           pnpm install --prefer-frozen-lockfile --ignore-scripts
 
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-
       - name: 📐 Run Linter
         run: pnpm lint
 
@@ -89,6 +84,11 @@ jobs:
           pnpm install --prefer-frozen-lockfile --ignore-scripts
 
       - name: Cypress install
+        run: |
+          npx cypress install
+          npx cypress verify
+
+      - name: Cypress install
         uses: cypress-io/github-action@v6
         with:
           runTests: false
@@ -113,8 +113,8 @@ jobs:
           ci-build-id: ${{ steps.uuid.outputs.value }}
           config-file: cypress.config.ts
         env:
-          PORT: api.dev.local
-          CYPRESS_HOST_PORT: 3000
-          CYPRESS_BASE_URL_PREFIX: 3001
+          PORT: 3000
+          CYPRESS_HOST_PORT: 3001
+          CYPRESS_BASE_URL_PREFIX: http://localhost:3000
           NEXT_PUBLIC_APP_URL: http://localhost:3000
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
