@@ -74,6 +74,16 @@ You can find these things in the template:
 <a style="text-decoration: none;" href="https://env.t3.gg" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/dotenv/ECD53F" alt="Zustand" width=17 height=17> <b>T3 Env</b>
   </a> - Manage your environment variables
 </li>
+
+<li style="padding-top: 4px;">
+<a style="text-decoration: none;" href="https://www.cypress.io/" target="_blank" rel="noopener noreferrer"> <img src="https://cdn.simpleicons.org/cypress/69D3A7" alt="Cypress" width=17 height=17> <b>Cypress</b>
+  </a> - For End-to-End (E2E) testing
+</li>
+
+<li style="padding-top: 4px;">
+<a style="text-decoration: none;" href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer"> <img src="./.github/assets/instalbul.png" alt="NYC" width=17 height=17> <b>NYC</b>
+  </a> - For code coverage reports and management
+</li>
 </ul>
 
 ## 🎯 Getting Started
@@ -113,26 +123,34 @@ If you do not want to run husky on every installation, remove this `&& node setu
 
 The template has the following scripts available in the `package.json`:
 
-- `dev`: Starts the development server with turbopack
-- `build`: Builds the app for production
-- `analyze`: Analyzes the bundle sizes for Client, Server and Edge environments
-- `start`: Starts the production server
-- `lint`: Check lints, formats and import sort with Biome
-- `lint:fix`: Automatically fixes linting errors with Biome
-- `types:check`: Verify typescript types with format message
-- `clean`: Remove all files in .next, out and coverage folders
-- `commitlint:last`: Check if the last commit follows the commitlint rules
-- `format`: Just check that the code is in the correct format with Biome
-- `format:fix`: Only automatically fixes formatting issues with biome
-- `prepare`: Run husky setup script
-- `test`: Runs unit and integration tests
-- `test:watch`: Runs unit and integration tests in watch mode
-- `test:storybook`: Runs acceptans test with storybook
-- `storybook`: Start storybook dev server
-- `storybook:serve`: Up a silent storybook development server
-- `prebuild:storybook`: Pre-build jest test for storybook
-- `build:storybook`: Build storybook server for deployment
-- `postinstall`: Applies patches to external dependencies and run prepare script
+- `dev`: Starts the development server with Turbopack, ensuring colored output.
+- `build`: Builds the application for production.
+- `analyze`: Analyzes the bundle sizes for Client, Server, and Edge environments.
+- `start`: Starts the production server.
+- `lint`: Checks for linting, formatting, and import sorting issues using Biome.
+- `lint:fix`: Automatically fixes linting issues with Biome (may include unsafe changes).
+- `types:check`: Verifies TypeScript types without emitting files.
+- `clean`: Removes all generated files from `.next`, `out`, `coverage`, `.swc`, and `.nyc_output`.
+- `commitlint:last`: Verifies if the last commit follows the commitlint rules.
+- `format`: Checks if the code follows the correct format using Biome.
+- `format:fix`: Automatically fixes formatting issues and organizes imports using Biome.
+- `prepare`: Runs the Husky setup script.
+- `unit:run`: Executes unit tests using Vitest.
+- `unit:watch`: Runs unit tests in watch mode.
+- `unit:coverage`: Runs unit tests and generates a coverage report.
+- `cy:open`: Opens the Cypress interface for running end-to-end tests.
+- `cy:run`: Runs Cypress end-to-end tests in headless mode.
+- `cy:serve:ci`: Starts the development server and runs Cypress tests in CI mode.
+- `cy:serve:app`: Starts the development server and opens Cypress in interactive mode.
+- `cover:unit`: Generates a coverage report for unit tests using `nyc`.
+- `cover:e2e`: Combines end-to-end test coverage with `nyc` and prevents overwriting previous coverage data.
+- `cover:report`: Generates a combined coverage report for all tests.
+- `cover`: Cleans previous coverage data, runs unit and e2e tests, and generates a full coverage report.
+- `test:storybook`: Runs acceptance tests for Storybook.
+- `storybook`: Starts the Storybook development server on port 6006.
+- `storybook:serve`: Serves the pre-built Storybook at port 6006.
+- `build:storybook`: Builds the Storybook for deployment.
+- `postinstall`: Applies patches to external dependencies and runs the `prepare` script.
 
 ## :file_folder: Project structure
 
@@ -156,9 +174,12 @@ The template has the following scripts available in the `package.json`:
 │   ├── styles/               # Styles folder
 │   └── models/                # Types, Enums, Models, schemas
 ├── .editorconfig             # Editor config
-├── biome.json                # Patterns eslint should ignore 
+├── .nycrc.json               # NYC configuration for code coverage
+├── biome.json                # Patterns eslint should ignore
+├── cypress.config.ts         # Cypress configuration
 ├── lint-staged.config.mjs    # Lintstaged config
 ├── commitlint.config.cjs     # Commit lint config and commit examples
+├── coverage.mjs              # Script to generate combined code coverage
 ├── env.ts                    # Environment variables config by t3-env
 ├── next.config.ts            # Next config file
 ├── postcss.config.cjs        # Postcss config file
@@ -212,15 +233,28 @@ You only need one, but I leave you examples for these 3 handlers:
 
 ## :shipit: Testing
 
-We use **Vitest** for unit and integration tests, leveraging its fast performance and modern testing features. For end-to-end (e2e) testing, **Playwright** is utilized, providing robust browser automation capabilities.
+We use **Vitest** for unit and integration tests, taking advantage of its fast performance and modern testing capabilities. For end-to-end (e2e) testing, **Cypress** is utilized, offering a reliable and robust browser testing framework. Additionally, we generate coverage reports using **nyc**, including a combined report for both unit and e2e tests.
 
 ### Running Tests
 
-Below are some examples using `pnpm`:
+Below are some examples of how to execute tests and generate coverage reports using `pnpm`:
 
-- **Unit and Integration Tests**: Execute tests with Vitest using `pnpm test`.
-- **Acceptance Tests**: Run Storybook tests with `pnpm test:storybook`.
+- **Unit and Integration Tests**: Execute tests with Vitest using `pnpm unit:run` or run them in watch mode with `pnpm unit:watch`.
+- **Unit Test Coverage**: Generate a coverage report for unit tests with `pnpm unit:coverage`.
+- **End-to-End (e2e) Tests**:
+  - Open the Cypress interface with `pnpm cy:open`.
+  - Run Cypress tests in headless mode with `pnpm cy:run`.
+  - Start the app and run e2e tests in CI mode with `pnpm cy:serve:ci`.
+- **Combined Coverage Report**:
+  - Generate a full coverage report (unit + e2e) by running `pnpm cover`. This cleans old reports, runs all tests, and generates a combined report.
+  - Use `pnpm cover:report` to manually generate the combined report if coverage files already exist.
+- **Storybook Tests**: Run acceptance tests for Storybook with `pnpm test:storybook`.
 
+### Viewing Coverage Reports
+
+The combined coverage report will be generated in the `coverage` folder. Open the `index.html` file inside the folder to view a detailed breakdown of test coverage for both unit and e2e tests.
+
+This setup ensures comprehensive test coverage and streamlined testing workflows for both unit and end-to-end scenarios.
 
 ### StoryBook
 
@@ -234,32 +268,6 @@ pnpm exec playwright install --with-deps
 ```
 
 Ready to run the Storybook tests, you must first have Storybook executed `pnpm storybook` and in another terminal execute `pnpm test:storybook`
-
-#### Connect with Jest test files
-
-If you don't want to use Storybook tests directly, you can also tell Storybook which test file(s) correspond to the component's story. To obtain this information you must execute `prebuild:storybook` (**This JSON is not updated automatically if the tests change**) this will generate a JSON with the test information necessary for Storybook to work
-
-```ts
-//.storybook/preview.ts
-import results from '../.jest-test-results.json';
-
-export const decorators = [
-  withTests({
-    results,
-  }),
-];
-
-//Button.stories.tsx
-export const Default: Story = {
-  args: {
-    /* ... */
-  },
-  parameters: {
-    //Add the name of file(s) that correspond to the test
-    jest: ['Button.test.tsx'],
-  },
-};
-```
 
 ## 🎨 Styling
 

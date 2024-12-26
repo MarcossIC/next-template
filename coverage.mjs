@@ -58,7 +58,7 @@ run([
   `nyc report --reporter lcov --report-dir ${FINAL_OUTPUT_FOLDER} --check-coverage=false`,
 ]);
 
-/*
+
 // Delete the reports folder and all its contents
 if (fs.existsSync(REPORTS_FOLDER)) {
   fs.removeSync(REPORTS_FOLDER);
@@ -67,4 +67,3 @@ if (fs.existsSync(REPORTS_FOLDER)) {
   console.warn(`Warning: ${REPORTS_FOLDER} does not exist, nothing to remove.`);
 }
 
-*/
