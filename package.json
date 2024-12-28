@@ -17,7 +17,7 @@
 		"commitlint:last": "npx commitlint --from HEAD~1 --to HEAD --verbose || $1",
 		"format": "biome check --linter-enabled=false --formatter-enabled=true --organize-imports-enabled=true \"**/*.{js,jsx,ts,tsx}\"",
 		"format:fix": "biome check --linter-enabled=false --formatter-enabled=true --organize-imports-enabled=true --write \"**/*.{js,jsx,ts,tsx}\"",
-		"prepare": "node setup-husky.js",
+		"prepare": "node ./scripts/setup-husky.js",
 		"unit:run": "cross-env FORCE_COLOR=1 vitest run --passWithNoTests",
 		"unit:watch": "vitest --passWithNoTests --watch",
 		"unit:coverage": "cross-env FORCE_COLOR=1 vitest run --coverage --passWithNoTests",
@@ -27,13 +27,13 @@
 		"cy:serve:app": "start-server-and-test dev http-get://127.0.0.1:3000 cy:open",
 		"cover:unit": "nyc --silent pnpm unit:coverage",
 		"cover:e2e": "nyc --silent --no-clean pnpm cy:serve:ci",
-		"cover:report": "node ./coverage.mjs",
+		"cover:report": "node ./scripts/coverage.mjs",
 		"cover": "rimraf coverage .nyc_output reports && pnpm unit:coverage && pnpm cy:serve:ci && pnpm cover:report",
 		"test:storybook": "cross-env FORCE_COLOR=1 test-storybook",
 		"storybook": "cross-env FORCE_COLOR=1 storybook dev -p 6006",
 		"storybook:serve": "http-server storybook-static --port 6006 --silent",
 		"build:storybook": "cross-env FORCE_COLOR=1 storybook build -c .storybook -o build/",
-		"postinstall": "npx patch-package && node setup-husky.js"
+		"postinstall": "npx patch-package && node ./scripts/setup-husky.js"
 	},
 	"dependencies": {
 		"@next/bundle-analyzer": "15.1.2",

@@ -6,23 +6,33 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-/*
-  Husky must run in the root where the ".git" is, if your project is not in the root you must move to the root for it to work (But the .husky will be created inside the project).
-  Example:
-  execSync('cd <root> && npx husky <project-path>/.husky', { stdio: 'inherit' });
-
-  Also make sure that the hooks are executed inside the project and not outside. Before executing the hook command, move inside the project folder
-  Example:
-  cd <project-path>
-  npx lint-staged
-  */
+/**
+ * Find the root directory of the project (where .git is located).
+ * @returns {string} Absolute path to the root directory.
+ */
+function findRootDir() {
+  let currentDir = __dirname;
+  while (!fs.existsSync(path.join(currentDir, ".git"))) {
+    const parentDir = path.resolve(currentDir, "..");
+    if (parentDir === currentDir) {
+      throw new Error("No se encontró un directorio .git en la jerarquía de carpetas.");
+    }
+    currentDir = parentDir;
+  }
+  return currentDir;
+}
 
 try {
 	// Initialize Husky
+  const rootDir = findRootDir();
+
+  // Cambia al directorio raíz
+  process.chdir(rootDir);
+
 	execSync("npx husky", { stdio: "inherit" });
 
 	// Create .husky directory if it doesn't exist
-	const huskyDir = path.join(__dirname, ".husky");
+	const huskyDir = path.join(rootDir, ".husky");
 	if (!fs.existsSync(huskyDir)) {
 		fs.mkdirSync(huskyDir);
 	}
