@@ -6,6 +6,20 @@ import { defineConfig } from "cypress";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+import tsconfig from "./tsconfig.json";
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const raw: any = tsconfig.compilerOptions.paths;
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const alias: any = {};
+
+for (const x in raw) {
+	alias[x.replace("/*", "")] = raw[x].map((p: string) =>
+		resolve(__dirname, p.replace("/*", "")),
+	);
+}
+
 const envConfig = {
 	CYPRESS_HOST_PORT: process.env.CYPRESS_HOST_PORT || "3001",
 	CYPRESS_BASE_URL_PREFIX:
@@ -15,12 +29,7 @@ const envConfig = {
 const webpackConfig = {
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".jsx"],
-		alias: {
-			"@styles": resolve(__dirname, "./src/styles"),
-			"@": resolve(__dirname, "./src"),
-			"test-utils": resolve(__dirname, "./__test__/test-utils.jsx"),
-			utils: resolve(__dirname, "./src/lib/utils.ts"),
-		},
+		alias,
 	},
 	module: {
 		rules: [

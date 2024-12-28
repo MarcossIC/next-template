@@ -1,4 +1,4 @@
-import Button from "@/components/core/Button/Button";
+import Button from "@core/components/Button";
 import { render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 

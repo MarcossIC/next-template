@@ -1,8 +1,7 @@
-import { openSans } from "@styles/font";
+import { openSans } from "@/styles/font";
 import type { Metadata, Viewport } from "next";
-import "@styles/globals.css";
-import { cn } from "@/core/lib/utils";
-import { getBaseUrl } from "@/core/lib/utils";
+import "@/styles/globals.css";
+import { cn, getBaseUrl } from "@core/lib/utils";
 import type { ReactNode } from "react";
 
 export const viewport: Viewport = {

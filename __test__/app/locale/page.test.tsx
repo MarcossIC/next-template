@@ -1,4 +1,4 @@
-import RootPage from "@/app/page";
+import RootPage from "@app/[locale]/page";
 import { render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
