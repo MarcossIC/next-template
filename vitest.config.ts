@@ -5,9 +5,9 @@ import path from "path";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-import tsconfig from "./tsconfig.json";
+import tsconfig from "./tsconfig.json"
 
-const raw: any = tsconfig.compilerOptions.paths;
+const raw: any = tsconfig.compilerOptions.paths
 const alias: any = {};
 
 for (const x in raw) {
@@ -29,7 +29,7 @@ export default defineConfig({
       reporter: ['text', 'json', 'html', 'lcov'],
       reportsDirectory: './coverage/vitest',
 			include: ["src/**/*.{js,ts,jsx,tsx}"],
-			exclude: [
+      exclude: [
         "**/*.d.ts",
         "**/*.test.{js,ts,jsx,tsx}",
         "**/*.spec.{js,ts,jsx,tsx}",
@@ -41,8 +41,8 @@ export default defineConfig({
         "public/**",
         ".next/**",
         ".swc/**",
-        "..storybook",
-        ".husky"
+        ".storybook/**",
+        ".husky/**"
       ],
 		},
 		environment: "jsdom",

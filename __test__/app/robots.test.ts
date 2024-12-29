@@ -1,14 +1,14 @@
 import { describe, it, expect, vi } from 'vitest'
 import robots from "@app/robots";
 
-const MOCK_URL = "https://example.com";
-
 vi.mock("@core/lib/utils", ()=>({
-  getBaseUrl: vi.fn().mockReturnValue(MOCK_URL),
+  getBaseUrl: vi.fn().mockReturnValue("https://example.com"),
 }))
+
 
 describe('robots.ts', () => {
   it('should generate correct robots configuration', () => {
+    const MOCK_URL = "https://example.com";
 
     // En Vitest no necesitamos el cast a jest.Mock
     const result = robots()

@@ -1,4 +1,4 @@
-export default function App() {
+export default function RootPage() {
 	return (
 		<div
 			data-testid="root-page"

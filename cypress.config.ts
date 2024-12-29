@@ -7,16 +7,14 @@ import { defineConfig } from "cypress";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-import tsconfig from "./tsconfig.json";
+import tsconfig from "./tsconfig.json" assert { type: "json" };
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const raw: any = tsconfig.compilerOptions.paths;
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const alias: any = {};
-
-for (const x in raw) {
-	alias[x.replace("/*", "")] = raw[x].map((p: string) =>
-		resolve(__dirname, p.replace("/*", "")),
+const alias: Record<string, string[]> = {};
+for (const key in raw) {
+	alias[key.replace("/*", "")] = raw[key].map((p: string) =>
+		resolve(process.cwd(), p.replace("/*", "")),
 	);
 }
 
@@ -31,20 +29,6 @@ const webpackConfig = {
 		extensions: [".ts", ".tsx", ".js", ".jsx"],
 		alias,
 	},
-	module: {
-		rules: [
-			{
-				test: /\.tsx?$/,
-				exclude: /node_modules/,
-				use: {
-					loader: "ts-loader",
-					options: {
-						transpileOnly: true,
-					},
-				},
-			},
-		],
-	},
 };
 
 // https://docs.cypress.io/guides/references/configuration
@@ -52,15 +36,13 @@ export default defineConfig({
 	video: false,
 	screenshotOnRunFailure: false,
 	port: Number(envConfig?.CYPRESS_HOST_PORT),
-
 	e2e: {
 		setupNodeEvents(on, config) {
 			const options = {
 				webpackOptions: webpackConfig,
-				watchOptions: {},
 			};
-			on("file:preprocessor", webpack(options));
 			register(on, config);
+			on("file:preprocessor", webpack(options));
 			return config;
 		},
 		baseUrl: envConfig.CYPRESS_BASE_URL_PREFIX,
@@ -68,12 +50,20 @@ export default defineConfig({
 		supportFile: "__test__/support/e2e.ts",
 	},
 	component: {
+		setupNodeEvents(on, config) {
+			const options = {
+				webpackOptions: webpackConfig,
+			};
+			register(on, config);
+			on("file:preprocessor", webpack(options));
+			return config;
+		},
 		devServer: {
 			framework: "next",
 			bundler: "webpack",
 			webpackConfig,
 		},
 		specPattern: "__test__/**/*.{spec,cy}.{js,jsx,ts,tsx}",
-		supportFile: false,
+		supportFile: "__test__/support/e2e.ts",
 	},
 });

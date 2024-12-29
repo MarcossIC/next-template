@@ -1,6 +1,6 @@
-describe("Root Page", () => {
+describe("RootPage", () => {
 	beforeEach(() => {
-		cy.visit("/");
+		cy.visit("/es");
 	});
 
 	it("Should render correctly", () => {
