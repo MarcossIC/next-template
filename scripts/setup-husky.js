@@ -11,23 +11,25 @@ const __dirname = path.dirname(__filename);
  * @returns {string} Absolute path to the root directory.
  */
 function findRootDir() {
-  let currentDir = __dirname;
-  while (!fs.existsSync(path.join(currentDir, ".git"))) {
-    const parentDir = path.resolve(currentDir, "..");
-    if (parentDir === currentDir) {
-      throw new Error("No se encontró un directorio .git en la jerarquía de carpetas.");
-    }
-    currentDir = parentDir;
-  }
-  return currentDir;
+	let currentDir = __dirname;
+	while (!fs.existsSync(path.join(currentDir, ".git"))) {
+		const parentDir = path.resolve(currentDir, "..");
+		if (parentDir === currentDir) {
+			throw new Error(
+				"No se encontró un directorio .git en la jerarquía de carpetas.",
+			);
+		}
+		currentDir = parentDir;
+	}
+	return currentDir;
 }
 
 try {
 	// Initialize Husky
-  const rootDir = findRootDir();
+	const rootDir = findRootDir();
 
-  // Cambia al directorio raíz
-  process.chdir(rootDir);
+	// Cambia al directorio raíz
+	process.chdir(rootDir);
 
 	execSync("npx husky", { stdio: "inherit" });
 

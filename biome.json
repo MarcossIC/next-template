@@ -17,12 +17,15 @@
 			".vercel",
 			".vscode",
 			"vitest.config.ts",
-			"coverage/*"
+			"coverage/*",
+			".nyc_output",
+			".storybook"
 		]
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"formatWithErrors": true
 	},
 	"organizeImports": {
 		"enabled": true
@@ -125,7 +128,9 @@
 			".vercel",
 			".vscode",
 			"vitest.config.ts",
-			"coverage/*"
+			"coverage/*",
+			".nyc_output",
+			".storybook"
 		]
 	},
 	"javascript": {
